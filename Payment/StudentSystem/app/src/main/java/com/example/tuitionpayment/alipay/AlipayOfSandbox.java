@@ -410,7 +410,7 @@ public class AlipayOfSandbox extends AppCompatActivity {
                             return; // 发生错误时返回
                         }
 
-                        String info = "用" + finalPaymentMethod + "支付学费单成功！";
+                        String info = "Use " + finalPaymentMethod + " To Pay Tuition Fees Successful！";
                         RequestBody body = RequestBody.create(
                                 json.toString(),
                                 MediaType.parse("application/json; charset=utf-8")
