@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.payment.common.Result;
 import com.example.payment.entity.TuitionInvoice;
+import com.example.payment.entity.User;
 import com.example.payment.service.ITuitionInvoiceService;
+import com.example.payment.service.IUserService;
+import com.example.payment.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,11 +21,18 @@ public class TuitionInvoiceController {
 
     @Resource
     private ITuitionInvoiceService tuitionInvoiceService;
+    @Resource
+    private IUserService userService;
 
     // 新增或者更新
     @PostMapping
     public Result save(@RequestBody TuitionInvoice tuitionInvoice) {
-        return Result.sucess(tuitionInvoiceService.saveOrUpdate(tuitionInvoice));
+        tuitionInvoiceService.saveOrUpdate(tuitionInvoice);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", tuitionInvoice.getStudentEmail());
+        User user = userService.getOne(queryWrapper);
+
+        return Result.sucess(user);
     }
 
     //查询

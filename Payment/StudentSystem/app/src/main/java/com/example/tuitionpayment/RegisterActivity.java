@@ -64,6 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 String json = "{\n" +
                                         "    \"username\":"+"\""+name+"\",\n" +
                                         "    \"role\":"+"\""+2+"\",\n" +
+                                        "    \"notify\":"+"\""+0+"\",\n" +
                                         "    \"password\":"+"\""+pwd01+"\"\n" +
                                         "}";
                                 OkHttpClient client = new OkHttpClient(); //创建http客户端
