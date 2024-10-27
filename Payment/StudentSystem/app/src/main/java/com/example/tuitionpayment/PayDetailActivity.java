@@ -53,6 +53,6 @@ public class PayDetailActivity extends AppCompatActivity {
         TextView paymentStatus = findViewById(R.id.tv_payment_status);
 
         paymentAmount.setText(String.valueOf(item.getPaymentAmount()));
-        paymentStatus.setText(item.getStatus() != 0 ? "已付款" : "未付款");
+        paymentStatus.setText(item.getStatus() != 0 ? "Complete Payment" : "Non Payment");
     }
 }
