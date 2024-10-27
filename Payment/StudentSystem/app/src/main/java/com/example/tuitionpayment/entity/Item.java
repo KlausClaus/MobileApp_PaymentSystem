@@ -16,12 +16,11 @@ public class Item implements Serializable {
     private Double activityFee; // 课外活动费（可选）
     private Double examFee; // 考试费（可选）
     private String paymentMethod; // 付款方式
-    private Double paymentAmount; // 付款金额
     private String createdTime; // 创建时间
     private String paymentTime; // 付款时间（可选）
     private Integer status;
 
-    public Item(int id, String studentName, String studentEmail, String major, String academicYear, double totalFee, double tuitionFee, double accommodationFee, double bookFee, double materialFee, double activityFee, double examFee, String paymentMethod, double paymentAmount, String createdTime, String paymentTime, int status) {
+    public Item(int id, String studentName, String studentEmail, String major, String academicYear, double totalFee, double tuitionFee, double accommodationFee, double bookFee, double materialFee, double activityFee, double examFee, String paymentMethod, String createdTime, String paymentTime, int status) {
     }
 
     public Item() {
@@ -132,14 +131,6 @@ public class Item implements Serializable {
         this.paymentMethod = paymentMethod;
     }
 
-    public Double getPaymentAmount() {
-        return paymentAmount;
-    }
-
-    public void setPaymentAmount(Double paymentAmount) {
-        this.paymentAmount = paymentAmount;
-    }
-
     public String getCreatedTime() {
         return createdTime;
     }
@@ -156,7 +147,7 @@ public class Item implements Serializable {
         this.paymentTime = paymentTime;
     }
 
-    public Item(Integer id, String studentName, String studentEmail, String major, String academicYear, Double totalFee, Double tuitionFee, Double accommodationFee, Double bookFee, Double materialFee, Double activityFee, Double examFee, String paymentMethod, Double paymentAmount, String createdTime, String paymentTime) {
+    public Item(Integer id, String studentName, String studentEmail, String major, String academicYear, Double totalFee, Double tuitionFee, Double accommodationFee, Double bookFee, Double materialFee, Double activityFee, Double examFee, String paymentMethod, String createdTime, String paymentTime) {
         this.id = id;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
@@ -170,12 +161,11 @@ public class Item implements Serializable {
         this.activityFee = activityFee;
         this.examFee = examFee;
         this.paymentMethod = paymentMethod;
-        this.paymentAmount = paymentAmount;
         this.createdTime = createdTime;
         this.paymentTime = paymentTime;
     }
 
-    public Item(Integer id, String studentName, String studentEmail, String major, String academicYear, Double totalFee, Double tuitionFee, Double accommodationFee, Double bookFee, Double materialFee, Double activityFee, Double examFee, String paymentMethod, Double paymentAmount, String createdTime, String paymentTime, Integer status) {
+    public Item(Integer id, String studentName, String studentEmail, String major, String academicYear, Double totalFee, Double tuitionFee, Double accommodationFee, Double bookFee, Double materialFee, Double activityFee, Double examFee, String paymentMethod, String createdTime, String paymentTime, Integer status) {
         this.id = id;
         this.studentName = studentName;
         this.studentEmail = studentEmail;
@@ -189,7 +179,6 @@ public class Item implements Serializable {
         this.activityFee = activityFee;
         this.examFee = examFee;
         this.paymentMethod = paymentMethod;
-        this.paymentAmount = paymentAmount;
         this.createdTime = createdTime;
         this.paymentTime = paymentTime;
         this.status = status;
@@ -219,7 +208,6 @@ public class Item implements Serializable {
                 ", activityFee=" + activityFee +
                 ", examFee=" + examFee +
                 ", paymentMethod='" + paymentMethod + '\'' +
-                ", paymentAmount=" + paymentAmount +
                 ", createdTime='" + createdTime + '\'' +
                 ", paymentTime='" + paymentTime + '\'' +
                 ", status=" + status +

@@ -49,10 +49,10 @@ public class PayDetailActivity extends AppCompatActivity {
         time.setText(item.getPaymentTime());
 
         // 显示付款信息
-        TextView paymentAmount = findViewById(R.id.tv_payment_amount);
+//        TextView paymentAmount = findViewById(R.id.tv_payment_amount);
         TextView paymentStatus = findViewById(R.id.tv_payment_status);
 
-        paymentAmount.setText(String.valueOf(item.getPaymentAmount()));
+//        paymentAmount.setText(String.valueOf(item.getPaymentAmount()));
         paymentStatus.setText(item.getStatus() != 0 ? "Complete Payment" : "Non Payment");
     }
 }

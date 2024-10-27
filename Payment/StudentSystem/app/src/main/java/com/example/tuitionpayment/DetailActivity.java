@@ -52,10 +52,10 @@ public class DetailActivity extends AppCompatActivity {
 
 
         // 显示付款信息
-        TextView paymentAmount = findViewById(R.id.tv_payment_amount);
+//        TextView paymentAmount = findViewById(R.id.tv_payment_amount);
         TextView paymentStatus = findViewById(R.id.tv_payment_status);
 
-        paymentAmount.setText(String.valueOf(item.getPaymentAmount()));
+//        paymentAmount.setText(String.valueOf(item.getPaymentAmount()));
         paymentStatus.setText(item.getStatus() != 0 ? "paid" : "non-payment");
 
         confirm.setOnClickListener(new View.OnClickListener() {

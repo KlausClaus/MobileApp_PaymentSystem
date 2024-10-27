@@ -127,7 +127,7 @@ public class PaidFeesActivity extends AppCompatActivity {
             item.setExamFee(jsonObject.optDouble("examFee", 0.0));
 
             item.setPaymentMethod(jsonObject.getString("paymentMethod"));
-            item.setPaymentAmount(jsonObject.getDouble("paymentAmount"));
+//            item.setPaymentAmount(jsonObject.getDouble("paymentAmount"));
             item.setCreatedTime(jsonObject.getString("createdTime"));
 
             // 使用 optString 来处理可能为空的字符串字段
