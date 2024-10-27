@@ -1,0 +1,52 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage Payment Methods"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:id="@+id/paymentMethodsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/addPaymentMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Payment Method"
+            android:textAllCaps="false"
+            android:backgroundTint="#2196F3"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+        <Button
+            android:id="@+id/confirmTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Settings"
+            android:textAllCaps="false"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>
