@@ -86,7 +86,7 @@
               clearable>
           </el-input>
         </el-form-item>
-        <el-form-item label="Year of Study" prop="academicYear">
+        <el-form-item label="*Year of Study" prop="academicYear">
           <el-input
               placeholder="Please enter the Year of Study"
               v-model="form.academicYear"
@@ -94,7 +94,7 @@
           </el-input>
         </el-form-item>
 
-        <el-form-item label="Tuition Fee" prop="tuitionFee">
+        <el-form-item label="*Tuition Fee" prop="tuitionFee">
           <el-input-number v-model="form.tuitionFee" :min="0" :controls="false" :precision="2"></el-input-number>
         </el-form-item>
 
@@ -123,7 +123,7 @@
 
         </el-form-item>
 
-        <el-form-item label="Total Fee" prop="totalFee">
+        <el-form-item label="*Total Fee" prop="totalFee">
           <el-input-number v-model="form.totalFee" :min="0" :controls="false" :precision="2"></el-input-number>
 
         </el-form-item>
