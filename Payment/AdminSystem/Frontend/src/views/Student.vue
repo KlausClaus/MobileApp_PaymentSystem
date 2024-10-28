@@ -1,26 +1,53 @@
 <template>
-  <div>
-    <div style="margin: 10px 0">
-      <el-input style="width: 200px" placeholder="Please enter the student name" suffix-icon="el-icon-search" v-model="name"></el-input>
-      <el-button class="ml-5" type="primary" @click="load">search</el-button>
-      <el-button type="warning" @click="reset">reset</el-button>
-    </div>
-    <div style="margin: 10px 0">
-      <el-button type="primary" size="medium" style="width: 160px; margin-bottom: 20px" @click="dialogFormVisible = true">Add Student Information</el-button>
+  <div class="student-container">
+    <!-- 搜索和操作区域 -->
+    <div class="header-actions">
+      <div class="search-bar">
+        <el-input
+            v-model="name"
+            placeholder="Please enter the student name"
+            prefix-icon="el-icon-search"
+            clearable
+            class="search-input">
+        </el-input>
+        <el-button type="primary" @click="load">Search</el-button>
+        <el-button type="warning" @click="reset">Reset</el-button>
+      </div>
 
-      <el-popconfirm
-          confirm-button-text='OK'
-          cancel-button-text='Let me think it over.'
-          icon="el-icon-info"
-          icon-color="red"
-          title="Are you sure about deleting this data？"
-          @confirm="deleteMore"
-      >
-        <el-button type="danger" size="medium" style="width: 130px; margin-left: 10px" slot="reference">Batch deletion</el-button>
-      </el-popconfirm>
+      <div class="operation-buttons">
+        <el-button
+            type="primary"
+            icon="el-icon-plus"
+            @click="dialogFormVisible = true">
+          Add Student Information
+        </el-button>
+
+        <el-popconfirm
+            confirm-button-text='OK'
+            cancel-button-text='Let me think it over'
+            icon="el-icon-info"
+            icon-color="red"
+            title="Are you sure about deleting this data？"
+            @confirm="deleteMore">
+          <el-button
+              slot="reference"
+              type="danger"
+              icon="el-icon-delete"
+              :disabled="!multipleSelection.length">
+            Batch deletion
+          </el-button>
+        </el-popconfirm>
+      </div>
     </div>
 
-    <el-table :data="tableData" border stripe :header-cell-class-name="'headerBg'" @selection-change="handleSelectionChange">
+    <!-- 表格部分 -->
+    <el-table
+        :data="tableData"
+        border
+        stripe
+        :header-cell-class-name="'headerBg'"
+        class="student-table"
+        @selection-change="handleSelectionChange">
       <el-table-column type="selection"></el-table-column>
       <el-table-column prop="id" label="ID"></el-table-column>
       <el-table-column prop="name" label="name"></el-table-column>
@@ -30,42 +57,54 @@
       <el-table-column prop="professional" label="professional"></el-table-column>
       <el-table-column label="Controls" width="200" align="center">
         <template slot-scope="scope">
-          <el-button type="success" @click="handleEdit(scope.row)">edit <i class="el-icon-edit"></i></el-button>
+          <el-button type="success" size="mini" @click="handleEdit(scope.row)">
+            edit <i class="el-icon-edit"></i>
+          </el-button>
           <el-popconfirm
               confirm-button-text='OK'
-              cancel-button-text='Let me think it over.'
+              cancel-button-text='Let me think it over'
               icon="el-icon-info"
               icon-color="red"
               title="Are you sure about deleting this data？"
-              @confirm="del(scope.row.uid)"
-          >
-            <el-button type="danger" slot="reference">delete <i class="el-icon-remove-outline"></i></el-button>
+              @confirm="del(scope.row.uid)">
+            <el-button type="danger" size="mini" slot="reference">
+              delete <i class="el-icon-remove-outline"></i>
+            </el-button>
           </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
 
-    <div style="padding: 10px 0">
-      <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="pageNum"
-          :page-sizes="[2, 5, 10, 20]"
-          :page-size="pageSize"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total">
-      </el-pagination>
-    </div>
+    <!-- 分页器 -->
+    <el-pagination
+        class="pagination"
+        background
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pageNum"
+        :page-sizes="[2, 5, 10, 20]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
+    </el-pagination>
 
-    <el-dialog title="Student Information" :visible.sync="dialogFormVisible" :modal-append-to-body=false width="30%" @close="listenDialogClose">
+    <!-- 弹窗表单 -->
+    <el-dialog
+        title="Student Information"
+        :visible.sync="dialogFormVisible"
+        :modal-append-to-body=false
+        width="30%"
+        @close="listenDialogClose">
       <el-form label-width="130px" size="small" :rules="rules" ref="editForm" :model="form">
         <el-form-item label="Name" prop="name">
           <el-input placeholder="Please enter content" v-model="form.name" clearable></el-input>
         </el-form-item>
-        <el-form-item label="Email" prop="email" :rules="[{ required: true, message: 'Please enter email', trigger: 'blur' }, { validator: validateEmail, trigger: 'blur' }]">
+        <el-form-item label="Email" prop="email" :rules="[
+          { required: true, message: 'Please enter email', trigger: 'blur' },
+          { validator: validateEmail, trigger: 'blur' }
+        ]">
           <el-input placeholder="Please enter content" v-model="form.email" clearable></el-input>
         </el-form-item>
-
         <el-form-item label="Year of study" prop="grade">
           <el-input placeholder="Please enter content" v-model="form.grade" clearable></el-input>
         </el-form-item>
@@ -78,7 +117,6 @@
             <el-option label="Female" value="woman"></el-option>
           </el-select>
         </el-form-item>
-
         <el-form-item label="Major" prop="professional">
           <el-input placeholder="Please enter content" v-model="form.professional" clearable></el-input>
         </el-form-item>
@@ -88,7 +126,6 @@
         <el-button type="primary" @click="save">Confirm</el-button>
       </div>
     </el-dialog>
-
   </div>
 </template>
 
@@ -112,7 +149,24 @@ export default {
         professional: ""
       },
       multipleSelection: [],
-      dialogFormVisible: false
+      dialogFormVisible: false,
+      rules: {
+        name: [
+          { required: true, message: 'Please enter name', trigger: 'blur' }
+        ],
+        grade: [
+          { required: true, message: 'Please enter grade', trigger: 'blur' }
+        ],
+        classes: [
+          { required: true, message: 'Please enter class', trigger: 'blur' }
+        ],
+        gender: [
+          { required: true, message: 'Please select gender', trigger: 'change' }
+        ],
+        professional: [
+          { required: true, message: 'Please enter major', trigger: 'blur' }
+        ]
+      }
     };
   },
   created() {
@@ -144,7 +198,6 @@ export default {
     save() {
       this.$refs.editForm.validate((valid) => {
         if (valid) {
-          // 表单验证通过，执行保存操作
           this.request.post("/student", this.form).then(res => {
             if (res.code === '200') {
               this.load();
@@ -155,13 +208,11 @@ export default {
             }
           });
         } else {
-          // 表单验证失败，阻止保存操作
           this.$message.error("Form validation failed. Please check the input");
           return false;
         }
       });
     },
-
     handleAdd() {
       this.dialogFormVisible = true;
       this.form = {};
@@ -215,7 +266,88 @@ export default {
 </script>
 
 <style>
+.student-container {
+  padding: 20px;
+}
+
+/* 头部布局样式 */
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  width: 300px;
+}
+
+.operation-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* 表格样式 */
+.student-table {
+  margin-bottom: 20px;
+}
+
+/* 分页器样式 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 表头背景 */
 .headerBg {
-  background: #eee !important;
+  background-color: #f5f7fa !important;
+}
+
+/* 按钮动效 */
+.el-button {
+  transition: all 0.3s;
+}
+
+.el-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 表单样式 */
+.el-dialog__body {
+  padding: 20px 30px;
+}
+
+.el-form-item {
+  margin-bottom: 20px;
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 768px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .search-input {
+    flex: 1;
+  }
+
+  .operation-buttons {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
 </style>
