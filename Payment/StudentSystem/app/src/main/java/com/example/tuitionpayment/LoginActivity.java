@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tuitionpayment.R;
 import com.example.tuitionpayment.RegisterActivity;
 import com.example.tuitionpayment.util.GlobalUrl;
+import com.example.tuitionpayment.util.Md5Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,16 +72,16 @@ public class LoginActivity extends AppCompatActivity {
                 String passWord = password.getText().toString();  //获取用户输入的用户名和密码
                 int role = 2;
 
+                String passWordMd5 = Md5Utils.encryptMD5(passWord);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-
                             OkHttpClient client = new OkHttpClient(); //创建http客户端
                             // 创建 JSON 格式的请求体
                             JSONObject json = new JSONObject();
                             json.put("username", userName);
-                            json.put("password", passWord);
+                            json.put("password", passWordMd5);
                             json.put("role", role);
 
                             RequestBody body = RequestBody.create(

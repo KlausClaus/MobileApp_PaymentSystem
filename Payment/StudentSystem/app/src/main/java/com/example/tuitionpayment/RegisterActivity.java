@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.tuitionpayment.util.GlobalUrl;
+import com.example.tuitionpayment.util.Md5Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "The user name or password cannot be empty!！", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    String passWordMd5 = Md5Utils.encryptMD5(pwd01);
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -65,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         "    \"username\":"+"\""+name+"\",\n" +
                                         "    \"role\":"+"\""+2+"\",\n" +
                                         "    \"notify\":"+"\""+0+"\",\n" +
-                                        "    \"password\":"+"\""+pwd01+"\"\n" +
+                                        "    \"password\":"+"\""+passWordMd5+"\"\n" +
                                         "}";
                                 OkHttpClient client = new OkHttpClient(); //创建http客户端
                                 Request request = new Request.Builder()
