@@ -140,7 +140,7 @@
 
         <div class="fees-section">
           <h3>Fee Details</h3>
-          <el-form-item label="Tuition Fee" prop="tuitionFee">
+          <el-form-item label="*Tuition Fee" prop="tuitionFee">
             <el-input-number
                 v-model="form.tuitionFee"
                 :min="0"
@@ -150,7 +150,7 @@
             </el-input-number>
           </el-form-item>
 
-          <el-form-item label="Accommodation Fee" prop="accommodationFee">
+          <el-form-item label="*Accommodation Fee" prop="accommodationFee">
             <el-input-number
                 v-model="form.accommodationFee"
                 :min="0"
@@ -200,7 +200,7 @@
             </el-input-number>
           </el-form-item>
 
-          <el-form-item label="Total Fee" prop="totalFee">
+          <el-form-item label="*Total Fee" prop="totalFee">
             <el-input-number
                 v-model="form.totalFee"
                 :min="0"
