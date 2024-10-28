@@ -8,11 +8,11 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Unpaid Tuition Bills"
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:text="Unpaid Invoices"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <!-- ListView positioned below the title -->
     <ListView

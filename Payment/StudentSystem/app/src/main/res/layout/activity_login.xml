@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:text="Tuition Payment Platform"
-        android:textColor="#F7F7F7"
+        android:text="EdPay"
+        android:textColor="#03A9F4"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -25,11 +25,11 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
+        android:layout_marginTop="156dp"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        tools:ignore="MissingConstraints">
 
         <EditText
             android:id="@+id/userName"
@@ -69,13 +69,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="60dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/register_login_buttonbackground"
             android:text="Login"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/iv_register1"
@@ -84,9 +84,9 @@
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             android:background="#00FFFFFF"
-            android:text="Don't have an account? Quick registration"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp" />
+            android:text="Register Now"
+            android:textColor="#009688"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

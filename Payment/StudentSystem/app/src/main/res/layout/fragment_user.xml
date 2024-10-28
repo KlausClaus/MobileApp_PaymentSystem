@@ -18,13 +18,13 @@
         android:gravity="center">
 
         <TextView
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Unpaid Fees"
-            android:textStyle="bold"
             android:layout_marginLeft="15dp"
-            android:textSize="18dp" />
+            android:layout_weight="1"
+            android:text="Unpaid Invoices"
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- Paid Fees -->
@@ -38,13 +38,13 @@
         android:background="#ffffff">
 
         <TextView
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Paid Fees"
             android:layout_marginLeft="15dp"
-            android:textStyle="bold"
-            android:textSize="18dp" />
+            android:layout_weight="1"
+            android:text="Paid Invoices"
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- Manage Payment Methods -->
@@ -58,13 +58,13 @@
         android:background="#ffffff">
 
         <TextView
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Manage Payment Methods"
             android:layout_marginLeft="15dp"
-            android:textStyle="bold"
-            android:textSize="18dp" />
+            android:layout_weight="1"
+            android:text="Payment Manager"
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- Personal Information -->
@@ -78,13 +78,13 @@
         android:background="#ffffff">
 
         <TextView
-            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Personal Information"
             android:layout_marginLeft="15dp"
-            android:textStyle="bold"
-            android:textSize="18dp" />
+            android:layout_weight="1"
+            android:text="Profile"
+            android:textSize="18dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- My Notifications -->

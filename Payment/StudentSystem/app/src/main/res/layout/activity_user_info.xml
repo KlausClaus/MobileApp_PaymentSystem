@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -7,18 +8,20 @@
 
     <ImageView
         android:id="@+id/image_view_avatar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="211dp"
+        android:layout_height="145dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:visibility="visible"
+        app:srcCompat="@drawable/infoback" />
 
     <Button
         android:id="@+id/button_upload_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Upload Avatar"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:text="Upload profile photo" />
 
     <TextView
         android:id="@+id/text_view_username"
@@ -29,10 +32,10 @@
 
     <TextView
         android:id="@+id/text_view_username_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp" />
+        android:layout_width="373dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/text_view_password"
