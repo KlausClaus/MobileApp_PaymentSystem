@@ -64,7 +64,7 @@
 
     <!-- 新增/编辑弹窗 -->
     <el-dialog :title="form.id ? 'Edit User' : 'Add User'" :visible.sync="dialogFormVisible" width="30%">
-      <el-form :model="form" label-width="80px" :rules="rules" ref="form">
+      <el-form :model="form" label-width="90px" :rules="rules" ref="form">
         <el-form-item label="Username" prop="username">
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>

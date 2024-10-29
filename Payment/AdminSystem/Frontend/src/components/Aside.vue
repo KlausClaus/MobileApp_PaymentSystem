@@ -21,17 +21,17 @@
 
       <el-menu-item index="/user" class="menu-item">
         <i class="el-icon-user"></i>
-        <span>User Management</span>
+        <span>User Manage</span>
       </el-menu-item>
 
       <el-menu-item index="/tuitionInvoice" class="menu-item">
         <i class="el-icon-document"></i>
-        <span>Tuition Bill Management</span>
+        <span>Bill Manage</span>
       </el-menu-item>
 
       <el-menu-item index="/student" class="menu-item">
         <i class="el-icon-reading"></i>
-        <span>Student Management</span>
+        <span>Student Manage</span>
       </el-menu-item>
 
       <el-menu-item index="/analysis" class="menu-item">
@@ -59,7 +59,8 @@ export default {
   min-height: 100%;
   overflow-x: hidden;
   border-right: none;
-  width: 240px !important;
+  width: 200px !important;
+
 }
 
 .logo-container {
@@ -116,7 +117,8 @@ i {
 
 /* 滚动条美化 */
 .aside-menu::-webkit-scrollbar {
-  width: 6px;
+  display: none;
+  /*width: 6px;*/
 }
 
 .aside-menu::-webkit-scrollbar-thumb {

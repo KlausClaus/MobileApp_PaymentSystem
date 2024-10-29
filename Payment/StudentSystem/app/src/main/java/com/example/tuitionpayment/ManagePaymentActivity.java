@@ -144,13 +144,13 @@ public class ManagePaymentActivity extends AppCompatActivity {
 
     private void showAddPaymentMethodDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("添加支付方式");
+        builder.setTitle("Add Payment Method");
 
         // 设置输入框
         final EditText input = new EditText(this);
         builder.setView(input);
 
-        builder.setPositiveButton("添加", (dialog, which) -> {
+        builder.setPositiveButton("Add", (dialog, which) -> {
             String newPaymentMethod = input.getText().toString().trim();
             if (!newPaymentMethod.isEmpty()) {
                 addNewPaymentMethod(newPaymentMethod);
@@ -159,7 +159,7 @@ public class ManagePaymentActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("取消", (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         builder.show();
     }

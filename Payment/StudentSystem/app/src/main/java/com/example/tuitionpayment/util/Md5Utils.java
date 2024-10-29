@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Md5Utils {
-    private static final String SALT = "Myapp123";
+    private static final String SALT = "$9900^^^Super&(+)&@!$";
 
     public static String encryptMD5(String input) {
         try {
