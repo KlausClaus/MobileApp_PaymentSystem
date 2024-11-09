@@ -13,7 +13,7 @@
       >
         <el-button slot="append" icon="el-icon-search" @click="load"></el-button>
       </el-input>
-      <el-button type="primary" @click="handleAdd" icon="el-icon-plus">Add User</el-button>
+<!--      <el-button type="primary" @click="handleAdd" icon="el-icon-plus">Add User</el-button>-->
     </div>
 
     <!-- 表格 -->
@@ -120,8 +120,8 @@ export default {
           username: this.username
         }
       }).then(res => {
-        this.tableData = res.data.records
-        this.total = res.data.total
+        this.tableData = res.data.records;
+        this.total = res.data.total;
       })
     },
     // 保存用户
@@ -137,10 +137,10 @@ export default {
       })
     },
     // 新增按钮
-    handleAdd() {
-      this.dialogFormVisible = true
-      this.form = {}
-    },
+    // handleAdd() {
+    //   this.dialogFormVisible = true
+    //   this.form = {}
+    // },
     // 编辑按钮
     handleEdit(row) {
       this.form = row
@@ -178,6 +178,7 @@ export default {
 <style scoped>
 .user-container {
   padding: 20px;
+
 }
 
 .search-container {

@@ -93,7 +93,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="pageNum"
-        :page-sizes="[10, 20, 50, 100]"
+        :page-sizes="[10, 15, 20, 50, 100]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total">
@@ -235,7 +235,7 @@ export default {
       tableData: [],
       total: 0,
       pageNum: 1,
-      pageSize: 10,
+      pageSize: 15,
       studentName: "",
       studentId: "",
       form: {
@@ -261,15 +261,17 @@ export default {
   },
   methods: {
     load() {
+      console.log("Searching for:", this.studentName);
       this.request.get("/tuitionInvoice/page", {
         params: {
           pageNum: this.pageNum,
           pageSize: this.pageSize,
-          studentName: this.studentName,
+          name: this.studentName
         }
       }).then(res => {
-        this.tableData = res.data.records
-        this.total = res.data.total
+        console.log("Response data:", res.data); // 调试：打印响应数据
+        this.tableData = res.data.records;
+        this.total = res.data.total;
       })
     },
     save() {

@@ -21,7 +21,8 @@ html, body {
 
 #app {
   min-height: 100vh;
-  background-color: #f0f2f5;
+  /*background-color: #f0f2f5;*/
+  background: linear-gradient(145deg, rgba(255, 248, 248, 0.44) 0%, rgba(199, 178, 178, 0.96) 100%);
 }
 
 .main-container {

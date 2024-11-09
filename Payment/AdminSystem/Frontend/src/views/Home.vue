@@ -9,13 +9,18 @@
       </p>
 
       <div class="features-grid">
-        <div v-for="(feature, index) in features"
-             :key="index"
-             class="feature-card"
-             :style="{ animationDelay: `${index * 0.2}s` }">
-          <i :class="feature.icon"></i>
-          <h3>{{ feature.title }}</h3>
-          <p>{{ feature.description }}</p>
+        <div
+            v-for="(feature, index) in features"
+            :key="index"
+            class="feature-card"
+            :style="{ animationDelay: `${index * 0.2}s` }"
+        >
+          <!-- 将每个 feature 包裹在 router-link 中，实现点击跳转 -->
+          <router-link :to="feature.url" class="feature-link">
+            <i :class="feature.icon"></i>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </router-link>
         </div>
       </div>
     </div>
@@ -31,22 +36,26 @@ export default {
         {
           icon: 'fas fa-users',
           title: 'User Management',
-          description: 'Manage staff and admin accounts'
+          description: 'Manage staff and admin accounts',
+          url: '/user' // 添加 URL 属性
         },
         {
           icon: 'fas fa-file-invoice-dollar',
           title: 'Tuition Billing',
-          description: 'Handle student fees and payments'
+          description: 'Handle student fees and payments',
+          url: '/tuitionInvoice'
         },
         {
           icon: 'fas fa-user-graduate',
           title: 'Student Records',
-          description: 'Track student information'
+          description: 'Track student information',
+          url: '/student'
         },
         {
           icon: 'fas fa-chart-bar',
           title: 'Analytics',
-          description: 'View financial statistics'
+          description: 'View financial statistics',
+          url: '/analysis'
         }
       ]
     }
@@ -56,10 +65,10 @@ export default {
 
 <style scoped>
 .home-container {
-  min-height: 100vh;
+  min-height: 80vh;
   padding: clamp(1rem, 3vw, 2rem);
   margin: 0 auto;
-  background: linear-gradient(145deg, #f8f9fa 0%, #ffffff 100%);
+  /*background: linear-gradient(145deg, rgba(245, 240, 240, 0.42) 0%, #bba4a4 100%);*/
 }
 
 .welcome-section {
@@ -78,27 +87,29 @@ export default {
 }
 
 .subtitle {
-  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.5rem);
   color: #666;
+  font-weight: 700;
   margin-bottom: clamp(2rem, 4vh, 3rem);
   animation: fadeInUp 0.8s ease-out;
 }
 
 .features-grid {
   display: grid;
-  gap: clamp(1rem, 2vw, 2rem);
+  gap: clamp(2rem, 4vw, 4rem);
   padding: clamp(1rem, 2vw, 2rem);
-  grid-template-columns: repeat(4, 1fr);
-  max-width: 1800px;
+  grid-template-columns: repeat(2, 1fr); /* 每行两个卡片 */
+  max-width: 1400px;
+  height: 700px;
   margin: 0 auto;
 }
 
 .feature-card {
   height: 100%;
-  background: white;
+  background: #f8f4f4;
   padding: clamp(1.5rem, 2vw, 2rem);
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(21, 20, 20, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: fadeInUp 0.5s ease-out forwards;
   min-height: 200px;
@@ -106,6 +117,15 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.feature-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .feature-card:hover {
@@ -164,46 +184,9 @@ export default {
 }
 
 /* 响应式布局优化 */
-@media (min-width: 1921px) {
-  .welcome-section {
-    max-width: 2000px;
-  }
-
-  .features-grid {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1800px;
-    margin: 0 auto;
-    gap: 2.5rem;
-  }
-
-  .feature-card {
-    padding: 2.5rem;
-  }
-}
-
-@media (max-width: 1600px) {
-  .features-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    padding: 0 2rem;
-  }
-}
-
-@media (max-width: 1200px) {
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    padding: 0 1.5rem;
-  }
-
-  .feature-card {
-    min-height: 180px;
-  }
-}
-
 @media (max-width: 768px) {
   .features-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 0 1rem;
   }
@@ -212,55 +195,5 @@ export default {
     min-height: 180px;
     padding: 1.5rem;
   }
-}
-
-@media (max-width: 576px) {
-  .features-grid {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-  }
-
-  .feature-card {
-    margin: 0 0.5rem;
-    min-height: 160px;
-    padding: 1.2rem;
-  }
-}
-
-/* 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-  .home-container {
-    background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
-  }
-
-  .title {
-    color: #fff;
-  }
-
-  .subtitle {
-    color: #bbb;
-  }
-
-  .feature-card {
-    background: #2d2d2d;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  .feature-card:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  }
-
-  .feature-card h3 {
-    color: #fff;
-  }
-
-  .feature-card p {
-    color: #bbb;
-  }
-}
-
-/* 添加滚动时的平滑效果 */
-html {
-  scroll-behavior: smooth;
 }
 </style>

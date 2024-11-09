@@ -96,9 +96,13 @@ public class UserController {
 
     @GetMapping("/page")
     public Result findPage(@RequestParam Integer pageNum,
-                           @RequestParam Integer pageSize) {
+                           @RequestParam Integer pageSize,
+                           @RequestParam(defaultValue = "") String username) {
         IPage<User> page = new Page<>(pageNum, pageSize);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        if (!"".equals(username)) {
+            queryWrapper.like("username", username);
+        }
         queryWrapper.eq("role", 2);
 
         queryWrapper.orderByDesc("uid");

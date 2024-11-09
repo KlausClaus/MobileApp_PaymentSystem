@@ -71,7 +71,7 @@ public class TuitionInvoiceController {
         IPage<TuitionInvoice> page = new Page<>(pageNum, pageSize);
         QueryWrapper<TuitionInvoice> queryWrapper = new QueryWrapper<>();
         if (!"".equals(name)) {
-            queryWrapper.like("name", name);
+            queryWrapper.like("student_name", name);
         }
 
 
