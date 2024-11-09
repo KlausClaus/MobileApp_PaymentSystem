@@ -111,27 +111,50 @@ public class ManagePaymentActivity extends AppCompatActivity {
             TextView name = paymentMethodView.findViewById(R.id.paymentName);
             RadioButton radioButton = paymentMethodView.findViewById(R.id.paymentRadioButton);
             Button deleteButton = paymentMethodView.findViewById(R.id.deletePaymentMethod);
-
-            // Set icon based on payment method name
-            // You need to add proper drawables for each payment method
-            icon.setImageResource(R.drawable.logo);
+    
+            // Set the payment method name
             name.setText(method.getName());
-            if (method.isDefault()==1){
-                chushiId = method.getId();
-                radioButton.setChecked(true);
-
+    
+            // Set the appropriate icon based on the payment method name
+            int iconResId = getIconResourceIdForPaymentMethod(method.getName());
+            if (iconResId != 0) {
+                icon.setImageResource(iconResId);
             }
-
+    
+            // Set the RadioButton state
+            radioButton.setChecked(method.isDefault() == 1);
+    
+            // Handle RadioButton click
             radioButton.setOnClickListener(v -> {
                 selectedPaymentMethodId = method.getId();
                 updateRadioButtons();
             });
-
+    
+            // Handle delete button click
             deleteButton.setOnClickListener(v -> deletePaymentMethod(method));
-
+    
+            // Add the payment method view to the container
             paymentMethodsContainer.addView(paymentMethodView);
         }
     }
+
+    private int getIconResourceIdForPaymentMethod(String methodName) {
+        switch (methodName.toLowerCase()) {
+            case "alipay":
+                return R.drawable.alipay_logo;
+            case "wechat pay":
+                return R.drawable.wechat_logo;
+            case "apple pay":
+                return R.drawable.applepay_logo;
+            case "unionpay":
+                return R.drawable.yinlian_logo;
+            case "visa":
+                return R.drawable.visa_logo;
+            default:
+                return 0; // 返回 0 或者返回一个默认图标的资源 ID
+        }
+    }
+    
 
 
     private void updateRadioButtons() {
@@ -173,7 +196,7 @@ public class ManagePaymentActivity extends AppCompatActivity {
                 json.put("email", username);
                 json.put("payway", paymentMethodName);
                 json.put("isDefault", 0);
-
+    
                 RequestBody body = RequestBody.create(
                         json.toString(),
                         MediaType.parse("application/json; charset=utf-8")
@@ -185,22 +208,48 @@ public class ManagePaymentActivity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 String responseBody = response.body().string();
                 JSONObject jsonObject = new JSONObject(responseBody);
-
+    
                 if (jsonObject.getString("code").equals("200")) {
                     JSONObject data = jsonObject.getJSONObject("data");
-                    PaymentMethod newMethod = new PaymentMethod(
-                            data.getInt("id"),
-                            data.getString("payway"),
-                            data.getInt("isDefault")
-                    );
-                    paymentMethods.add(newMethod);
-                    runOnUiThread(this::updatePaymentMethodsView);
+                    int newMethodId = data.getInt("id");
+    
+                    // 检查是否已有相同支付方式，如果有，将其设为默认
+                    boolean alreadyExists = false;
+                    for (PaymentMethod method : paymentMethods) {
+                        if (method.getName().equalsIgnoreCase(paymentMethodName)) {
+                            alreadyExists = true;
+                            selectedPaymentMethodId = method.getId(); // 设置为已存在的支付方式ID
+                            break;
+                        }
+                    }
+    
+                    if (!alreadyExists) {
+                        // 如果是新支付方式，则添加到列表
+                        PaymentMethod newMethod = new PaymentMethod(
+                                newMethodId,
+                                data.getString("payway"),
+                                data.getInt("isDefault")
+                        );
+                        paymentMethods.add(newMethod);
+                    } else {
+                        // 如果已存在，只设置为默认
+                        selectedPaymentMethodId = newMethodId;
+                    }
+    
+                    // 更新界面和保存设置为默认
+                    runOnUiThread(() -> {
+                        updateRadioButtons(); // 更新界面上的选中状态
+                        savePaymentMethods(); // 保存设置，将该支付方式设为默认
+                        updatePaymentMethodsView(); // 刷新视图，确保显示5个支付方式
+                    });
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
     }
+    
+    
 
     private void deletePaymentMethod(PaymentMethod method) {
         new Thread(() -> {
