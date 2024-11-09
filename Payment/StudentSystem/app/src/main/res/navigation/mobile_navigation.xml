@@ -12,6 +12,17 @@
 
 
 
+    <fragment
+        android:id="@+id/navigation_bill"
+        android:name="com.example.tuitionpayment.fraction.BillFragment"
+        tools:layout="@layout/fragment_bill" />
+
+
+    <fragment
+        android:id="@+id/navigation_payment"
+        android:name="com.example.tuitionpayment.fraction.PaymentFragment"
+        tools:layout="@layout/fragment_payment" />
+
 
 
     <fragment

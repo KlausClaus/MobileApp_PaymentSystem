@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,16 +15,10 @@ import androidx.fragment.app.Fragment;
 import com.example.tuitionpayment.LoginActivity;
 import com.example.tuitionpayment.NotifyActivity;
 import com.example.tuitionpayment.R;
-import com.example.tuitionpayment.UnpaidFeesActivity;
-import com.example.tuitionpayment.PaidFeesActivity;
-import com.example.tuitionpayment.ManagePaymentActivity;
 import com.example.tuitionpayment.UserInfoActivity;
 
 public class UserFragment extends Fragment {
 
-    private LinearLayout unpaidFeesView;
-    private LinearLayout paidFeesView;
-    private LinearLayout managePaymentView;
     private LinearLayout userInfoView;
     private LinearLayout my_notifications;
     private LinearLayout iv_logout;
@@ -54,40 +46,12 @@ public class UserFragment extends Fragment {
         nickname = usInfo.getString("nickname", null);
 
 
-        unpaidFeesView = getActivity().findViewById(R.id.unpaid_fees);
-        paidFeesView = getActivity().findViewById(R.id.paid_fees);
-        managePaymentView = getActivity().findViewById(R.id.manage_payment);
+
+
         userInfoView = getActivity().findViewById(R.id.user_info);
         my_notifications = getActivity().findViewById(R.id.my_notifications);
         iv_logout = getActivity().findViewById(R.id.logout);
 
-
-        // 设置点击未支付学费单的跳转
-        unpaidFeesView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), UnpaidFeesActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // 设置点击已支付学费单的跳转
-        paidFeesView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PaidFeesActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // 设置点击管理支付方式的跳转
-        managePaymentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
-                startActivity(intent);
-            }
-        });
 
         // 设置点击个人信息的跳转
         userInfoView.setOnClickListener(new View.OnClickListener() {

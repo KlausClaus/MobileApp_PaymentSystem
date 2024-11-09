@@ -6,66 +6,8 @@
     android:orientation="vertical"
     android:background="#E3E3E3">
 
-    <!-- Unpaid Fees -->
-    <LinearLayout
-        android:id="@+id/unpaid_fees"
-        android:clickable="true"
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:text="Unpaid Invoices"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
-    <!-- Paid Fees -->
-    <LinearLayout
-        android:id="@+id/paid_fees"
-        android:layout_width="match_parent"
-        android:layout_marginTop="2dp"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="#ffffff">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:text="Paid Invoices"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- Manage Payment Methods -->
-    <LinearLayout
-        android:id="@+id/manage_payment"
-        android:layout_width="match_parent"
-        android:layout_marginTop="2dp"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="#ffffff">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:text="Payment Manager"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
     <!-- Personal Information -->
     <LinearLayout
