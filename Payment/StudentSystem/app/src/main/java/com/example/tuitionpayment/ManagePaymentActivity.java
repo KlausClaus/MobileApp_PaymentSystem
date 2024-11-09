@@ -47,6 +47,21 @@ public class ManagePaymentActivity extends AppCompatActivity {
     private int selectedPaymentMethodId = -1;
     private int chushiId = -1;
 
+    private void initializeDefaultPaymentMethods() {
+        List<PaymentMethod> defaultMethods = Arrays.asList(
+            new PaymentMethod(1, "Alipay", 0),
+            new PaymentMethod(2, "WeChat Pay", 0),
+            new PaymentMethod(3, "Apple Pay", 0),
+            new PaymentMethod(4, "UnionPay", 0),
+            new PaymentMethod(5, "Visa", 0)
+        );
+    
+        paymentMethods.clear(); // 清除列表以避免重复添加
+        paymentMethods.addAll(defaultMethods);
+        updatePaymentMethodsView(); // 更新视图
+    }
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +74,17 @@ public class ManagePaymentActivity extends AppCompatActivity {
         addPaymentMethod = findViewById(R.id.addPaymentMethod);
         confirmTransaction = findViewById(R.id.confirmTransaction);
 
+        // Initialize and show the default payment methods
+        initializeDefaultPaymentMethods();
+
+        // Load additional payment methods from the server
         loadPaymentMethods();
 
         addPaymentMethod.setOnClickListener(v -> showAddPaymentMethodDialog());
         confirmTransaction.setOnClickListener(v -> savePaymentMethods());
     }
+
+
 
     private void loadPaymentMethods() {
         new Thread(() -> {
@@ -71,7 +92,7 @@ public class ManagePaymentActivity extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
                 JSONObject json = new JSONObject();
                 json.put("email", username);
-
+    
                 RequestBody body = RequestBody.create(
                         json.toString(),
                         MediaType.parse("application/json; charset=utf-8")
@@ -83,18 +104,32 @@ public class ManagePaymentActivity extends AppCompatActivity {
                 Response response = client.newCall(request).execute();
                 String responseBody = response.body().string();
                 JSONObject jsonObject = new JSONObject(responseBody);
-
+    
                 if (jsonObject.getString("code").equals("200")) {
                     JSONArray dataArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < dataArray.length(); i++) {
                         JSONObject paymentObject = dataArray.getJSONObject(i);
-                        PaymentMethod paymentMethod = new PaymentMethod(
+                        String paywayName = paymentObject.getString("payway");
+    
+                        // Check if the payment method already exists in the default list
+                        boolean exists = false;
+                        for (PaymentMethod method : paymentMethods) {
+                            if (method.getName().equalsIgnoreCase(paywayName)) {
+                                exists = true;
+                                break;
+                            }
+                        }
+    
+                        if (!exists) {
+                            PaymentMethod paymentMethod = new PaymentMethod(
                                 paymentObject.getInt("id"),
-                                paymentObject.getString("payway"),
+                                paywayName,
                                 paymentObject.getInt("isDefault")
-                        );
-                        paymentMethods.add(paymentMethod);
+                            );
+                            paymentMethods.add(paymentMethod);
+                        }
                     }
+    
                     runOnUiThread(this::updatePaymentMethodsView);
                 }
             } catch (Exception e) {
@@ -102,6 +137,7 @@ public class ManagePaymentActivity extends AppCompatActivity {
             }
         }).start();
     }
+    
 
     private void updatePaymentMethodsView() {
         paymentMethodsContainer.removeAllViews();
