@@ -42,5 +42,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.android.material:material:1.9.0'
     api 'com.alipay.sdk:alipaysdk-android:+@aar'
 }
