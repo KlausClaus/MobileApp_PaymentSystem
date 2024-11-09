@@ -1,12 +1,15 @@
 package com.example.tuitionpayment;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tuitionpayment.alipay.AlipayOfSandbox;
 import com.example.tuitionpayment.entity.Item;
@@ -61,10 +64,29 @@ public class DetailActivity extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(DetailActivity.this, AlipayOfSandbox.class);
-                intent1.putExtra("id",item.getId());
-                intent1.putExtra("price",item.getTotalFee());
-                startActivity(intent1);
+                AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+                builder.setTitle("提示");
+                builder.setMessage("确定要执行操作吗？");
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 在这里执行确认后的操作
+                        Intent intent1 = new Intent(DetailActivity.this, AlipayOfSandbox.class);
+                        intent1.putExtra("id",item.getId());
+                        intent1.putExtra("price",item.getTotalFee());
+                        startActivity(intent1);
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(DetailActivity.this,"取消",Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
     }

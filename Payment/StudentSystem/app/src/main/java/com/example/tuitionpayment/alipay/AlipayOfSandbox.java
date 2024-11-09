@@ -3,7 +3,7 @@ package com.example.tuitionpayment.alipay;
 import static com.example.tuitionpayment.util.GlobalUrl.url;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,7 +24,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.EnvUtils;
@@ -287,9 +290,12 @@ public class AlipayOfSandbox extends AppCompatActivity {
         loadPaymentMethods();
         // 设置“确认交易”按钮的点击事件
         confirmTransaction.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
-                handlePayment(); // 调用处理支付方法
+                CustomDialogFragment dialogFragment = new CustomDialogFragment();
+                dialogFragment.show(getSupportFragmentManager(), "customDialog");
             }
         });
 
@@ -656,6 +662,32 @@ public class AlipayOfSandbox extends AppCompatActivity {
 
         public int isDefault() {
             return isDefault;
+        }
+    }
+
+    public class CustomDialogFragment extends DialogFragment {
+        @NonNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("提示");
+            builder.setMessage("确定要执行操作吗？");
+            builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // 执行确认后的操作
+                    if (getActivity() instanceof AlipayOfSandbox) {
+                        ((AlipayOfSandbox) getActivity()).handlePayment();;
+                    }
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            return builder.create();
         }
     }
 }
