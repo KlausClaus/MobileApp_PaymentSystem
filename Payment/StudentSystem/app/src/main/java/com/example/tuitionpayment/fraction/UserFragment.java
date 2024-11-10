@@ -19,9 +19,9 @@ import com.example.tuitionpayment.UserInfoActivity;
 
 public class UserFragment extends Fragment {
 
-    private LinearLayout userInfoView;
-    private LinearLayout my_notifications;
-    private LinearLayout iv_logout;
+    private View userInfoView;
+    private View my_notifications;
+    private View iv_logout;
 
     SharedPreferences usInfo;
     private String userid;
