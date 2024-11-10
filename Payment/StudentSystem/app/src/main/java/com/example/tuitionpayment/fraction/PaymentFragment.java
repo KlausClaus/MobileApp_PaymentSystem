@@ -15,7 +15,7 @@ import com.example.tuitionpayment.R;
 
 public class PaymentFragment extends Fragment {
 
-    private LinearLayout managePaymentView;
+    private View managePaymentView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View root = inflater.inflate(R.layout.fragment_payment, container, false);
