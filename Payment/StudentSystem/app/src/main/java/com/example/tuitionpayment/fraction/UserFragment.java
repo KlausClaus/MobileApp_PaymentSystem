@@ -13,12 +13,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.tuitionpayment.LoginActivity;
+import com.example.tuitionpayment.ManagePaymentActivity;
 import com.example.tuitionpayment.NotifyActivity;
 import com.example.tuitionpayment.R;
 import com.example.tuitionpayment.UserInfoActivity;
 
 public class UserFragment extends Fragment {
 
+    private View paymentManager;
     private View userInfoView;
     private View my_notifications;
     private View iv_logout;
@@ -47,12 +49,19 @@ public class UserFragment extends Fragment {
 
 
 
-
+        paymentManager = getActivity().findViewById(R.id.manage_payment);
         userInfoView = getActivity().findViewById(R.id.user_info);
         my_notifications = getActivity().findViewById(R.id.my_notifications);
         iv_logout = getActivity().findViewById(R.id.logout);
 
 
+        paymentManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
+                startActivity(intent);
+            }
+        });
         // 设置点击个人信息的跳转
         userInfoView.setOnClickListener(new View.OnClickListener() {
             @Override
