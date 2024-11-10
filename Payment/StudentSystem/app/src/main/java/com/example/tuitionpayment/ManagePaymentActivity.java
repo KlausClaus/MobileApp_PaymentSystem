@@ -167,7 +167,13 @@ public class ManagePaymentActivity extends AppCompatActivity {
             });
     
             // Handle delete button click
-            deleteButton.setOnClickListener(v -> deletePaymentMethod(method));
+            deleteButton.setOnClickListener(v -> {
+                new AlertDialog.Builder(ManagePaymentActivity.this)
+                    .setTitle("Confirm Delete")
+                    .setPositiveButton("Yes", (dialog, which) -> deletePaymentMethod(method))
+                    .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                    .show();
+            });
     
             // Add the payment method view to the container
             paymentMethodsContainer.addView(paymentMethodView);
