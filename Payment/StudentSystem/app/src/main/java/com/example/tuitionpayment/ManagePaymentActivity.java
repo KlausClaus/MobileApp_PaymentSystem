@@ -193,7 +193,7 @@ public class ManagePaymentActivity extends AppCompatActivity {
             case "visa":
                 return R.drawable.visa_logo;
             default:
-                return 0; // 返回 0 或者返回一个默认图标的资源 ID
+                return 0; // 返回 0 表示未找到合适的图标资源
         }
     }
     
@@ -255,33 +255,15 @@ public class ManagePaymentActivity extends AppCompatActivity {
                     JSONObject data = jsonObject.getJSONObject("data");
                     int newMethodId = data.getInt("id");
     
-                    // 检查是否已有相同支付方式，如果有，将其设为默认
-                    boolean alreadyExists = false;
-                    for (PaymentMethod method : paymentMethods) {
-                        if (method.getName().equalsIgnoreCase(paymentMethodName)) {
-                            alreadyExists = true;
-                            selectedPaymentMethodId = method.getId(); // 设置为已存在的支付方式ID
-                            break;
-                        }
-                    }
+                    PaymentMethod newMethod = new PaymentMethod(
+                        newMethodId,
+                        data.getString("payway"),
+                        data.getInt("isDefault")
+                    );
+                paymentMethods.add(newMethod);
     
-                    if (!alreadyExists) {
-                        // 如果是新支付方式，则添加到列表
-                        PaymentMethod newMethod = new PaymentMethod(
-                                newMethodId,
-                                data.getString("payway"),
-                                data.getInt("isDefault")
-                        );
-                        paymentMethods.add(newMethod);
-                    } else {
-                        // 如果已存在，只设置为默认
-                        selectedPaymentMethodId = newMethodId;
-                    }
-    
-                    // 更新界面和保存设置为默认
+                    // 更新界面
                     runOnUiThread(() -> {
-                        updateRadioButtons(); // 更新界面上的选中状态
-                        savePaymentMethods(); // 保存设置，将该支付方式设为默认
                         updatePaymentMethodsView(); // 刷新视图，确保显示5个支付方式
                     });
                 }
@@ -319,55 +301,60 @@ public class ManagePaymentActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 OkHttpClient client = new OkHttpClient();
+                
+                // 只有在选中的支付方式和原来的不一样时才更新默认状态
                 if (chushiId != selectedPaymentMethodId) {
-                    // 将 chushiId 对应的 isDefault 置为 0
-                    JSONObject updateDefaultJson = new JSONObject();
-                    updateDefaultJson.put("id", chushiId);
-                    updateDefaultJson.put("isDefault", 0);
-
-                    RequestBody updateDefaultBody = RequestBody.create(
-                            updateDefaultJson.toString(),
+                    // 将原来默认的支付方式的 isDefault 置为 0
+                    if (chushiId != -1) { // 检查是否存在原来的默认支付方式
+                        JSONObject updateDefaultJson = new JSONObject();
+                        updateDefaultJson.put("id", chushiId);
+                        updateDefaultJson.put("isDefault", 0);
+    
+                        RequestBody updateDefaultBody = RequestBody.create(
+                                updateDefaultJson.toString(),
+                                MediaType.parse("application/json; charset=utf-8")
+                        );
+                        Request updateDefaultRequest = new Request.Builder()
+                                .url(url + "/payway")
+                                .post(updateDefaultBody)
+                                .build();
+                        client.newCall(updateDefaultRequest).execute(); // 执行更新请求
+                    }
+    
+                    // 更新新选中的支付方式为默认
+                    JSONObject setDefaultJson = new JSONObject();
+                    setDefaultJson.put("email", username);
+                    setDefaultJson.put("isDefault", 1);
+                    setDefaultJson.put("id", selectedPaymentMethodId);
+    
+                    RequestBody setDefaultBody = RequestBody.create(
+                            setDefaultJson.toString(),
                             MediaType.parse("application/json; charset=utf-8")
                     );
-                    Request updateDefaultRequest = new Request.Builder()
+                    Request setDefaultRequest = new Request.Builder()
                             .url(url + "/payway")
-                            .post(updateDefaultBody)
+                            .post(setDefaultBody)
                             .build();
-                    client.newCall(updateDefaultRequest).execute(); // 执行更新请求
-                }
-
-                // 更新 selectedPaymentMethodId 对应的 isDefault 置为 1
-                JSONObject setDefaultJson = new JSONObject();
-                setDefaultJson.put("email", username);
-                setDefaultJson.put("isDefault", 1);
-                setDefaultJson.put("id", selectedPaymentMethodId);
-
-                RequestBody setDefaultBody = RequestBody.create(
-                        setDefaultJson.toString(),
-                        MediaType.parse("application/json; charset=utf-8")
-                );
-                Request setDefaultRequest = new Request.Builder()
-                        .url(url + "/payway")
-                        .post(setDefaultBody)
-                        .build();
-                Response response = client.newCall(setDefaultRequest).execute(); // 执行设置请求
-
-                String responseBody = response.body().string();
-                JSONObject jsonObject = new JSONObject(responseBody);
-
-                if (jsonObject.getString("code").equals("200")) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(ManagePaymentActivity.this, "Settings saved", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ManagePaymentActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    });
+                    Response response = client.newCall(setDefaultRequest).execute(); // 执行设置请求
+    
+                    String responseBody = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseBody);
+    
+                    if (jsonObject.getString("code").equals("200")) {
+                        runOnUiThread(() -> {
+                            Toast.makeText(ManagePaymentActivity.this, "Settings saved", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ManagePaymentActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        });
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
     }
+    
 
 
     private static class PaymentMethod {
