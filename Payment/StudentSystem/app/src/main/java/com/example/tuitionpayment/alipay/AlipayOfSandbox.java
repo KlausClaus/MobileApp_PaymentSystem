@@ -289,7 +289,23 @@ public class AlipayOfSandbox extends AppCompatActivity {
         confirmTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handlePayment(); // 调用处理支付方法
+            androidx.appcompat.app.AlertDialog.Builder builder=new androidx.appcompat.app.AlertDialog.Builder(AlipayOfSandbox.this);
+                builder.setTitle("prompt");
+                builder.setMessage("Are you sure you want to perform the operation?");
+                builder.setPositiveButton("confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        handlePayment();
+                    }
+                });
+                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                androidx.appcompat.app.AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -659,3 +675,4 @@ public class AlipayOfSandbox extends AppCompatActivity {
         }
     }
 }
+
