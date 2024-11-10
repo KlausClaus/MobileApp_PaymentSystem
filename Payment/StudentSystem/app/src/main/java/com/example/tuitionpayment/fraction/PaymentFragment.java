@@ -1,10 +1,7 @@
 package com.example.tuitionpayment.fraction;
-
 import static com.example.tuitionpayment.util.GlobalUrl.url;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,24 +17,20 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ManagePaymentActivity extends AppCompatActivity {
-
+public class PaymentFragment extends Fragment {
     private LinearLayout paymentMethodsContainer;
     private Button addPaymentMethod;
     private Button confirmTransaction;
@@ -46,6 +39,12 @@ public class ManagePaymentActivity extends AppCompatActivity {
     private List<PaymentMethod> paymentMethods = new ArrayList<>();
     private int selectedPaymentMethodId = -1;
     private int chushiId = -1;
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
+        View root = inflater.inflate(R.layout.fragment_payment, container, false);
+
+        return root;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
