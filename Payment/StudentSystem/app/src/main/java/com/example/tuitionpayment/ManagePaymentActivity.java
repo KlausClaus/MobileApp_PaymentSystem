@@ -56,12 +56,39 @@ public class ManagePaymentActivity extends AppCompatActivity {
             new PaymentMethod(5, "Visa", 0)
         );
     
-        paymentMethods.clear(); // 清除列表以避免重复添加
+        paymentMethods.clear();
         paymentMethods.addAll(defaultMethods);
+    
+        // 插入默认支付方式到数据库
+        for (PaymentMethod method : defaultMethods) {
+            new Thread(() -> {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    JSONObject json = new JSONObject();
+                    json.put("email", username);
+                    json.put("payway", method.getName());
+                    json.put("isDefault", 0);
+    
+                    RequestBody body = RequestBody.create(
+                            json.toString(),
+                            MediaType.parse("application/json; charset=utf-8")
+                    );
+                    Request request = new Request.Builder()
+                            .url(url + "/payway")
+                            .post(body)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    response.close(); // 关闭响应
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    
         updatePaymentMethodsView(); // 更新视图
     }
     
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +110,6 @@ public class ManagePaymentActivity extends AppCompatActivity {
         addPaymentMethod.setOnClickListener(v -> showAddPaymentMethodDialog());
         confirmTransaction.setOnClickListener(v -> savePaymentMethods());
     }
-
-
 
     private void loadPaymentMethods() {
         new Thread(() -> {
