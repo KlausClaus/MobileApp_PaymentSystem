@@ -129,7 +129,7 @@ public class PaymentFragment extends Fragment {
 
             deleteButton.setOnClickListener(v -> {
                 // Show confirmation dialog before deleting
-                AlertDialog.Builder builder = new AlertDialog.Builder(ManagePaymentActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PaymentFragment.this);
                 builder.setTitle("Delete Payment Method");
                 builder.setPositiveButton("Yes", (dialog, which) -> {
                     // Call the method to delete the payment method
@@ -181,7 +181,7 @@ public class PaymentFragment extends Fragment {
             if (!newPaymentMethod.isEmpty()) {
                 addNewPaymentMethod(newPaymentMethod);
             } else {
-                Toast.makeText(ManagePaymentActivity.this, "The payment method cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PaymentFragment.this, "The payment method cannot be empty", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -292,8 +292,8 @@ public class PaymentFragment extends Fragment {
 
                 if (jsonObject.getString("code").equals("200")) {
                     runOnUiThread(() -> {
-                        Toast.makeText(ManagePaymentActivity.this, "Settings saved", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ManagePaymentActivity.this, ManagePaymentActivity.class);
+                        Toast.makeText(PaymentFragment.this, "Settings saved", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PaymentFragment.this, PaymentFragment.class);
                         startActivity(intent);
                         finish();
                     });
