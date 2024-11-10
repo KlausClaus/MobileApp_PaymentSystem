@@ -22,11 +22,16 @@ import com.example.tuitionpayment.util.Md5Utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+import java.util.Arrays;
+
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -79,6 +84,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(a);
                                 System.out.println(jsonObject);
                                 if (jsonObject.getString("code").equals("200")){
+
+
                                     Intent intent = new Intent();
                                     intent.setClass(RegisterActivity.this,LoginActivity.class);
                                     startActivity(intent);
@@ -88,6 +95,9 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.makeText(RegisterActivity.this,"Registered successfully！ Please log in！",Toast.LENGTH_SHORT).show();
                                         }
                                     });
+
+                                    addDefaultPaymentMethods(name);
+
                                 }else if (jsonObject.getString("code").equals("600")){
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -113,4 +123,39 @@ public class RegisterActivity extends AppCompatActivity {
 
         });
     }
+
+    private void addDefaultPaymentMethods(String username) {
+        new Thread(() -> {
+            try {
+                OkHttpClient client = new OkHttpClient();
+                List<String> defaultPaymentMethods = Arrays.asList("UnionPay", "WeChat", "AliPay", "Visa", "ApplePay");
+    
+                for (String methodName : defaultPaymentMethods) {
+                    JSONObject json = new JSONObject();
+                    json.put("email", username);
+                    json.put("payway", methodName);
+                    json.put("isDefault", 0);
+    
+                    RequestBody body = RequestBody.create(
+                            json.toString(),
+                            MediaType.parse("application/json; charset=utf-8")
+                    );
+                    Request request = new Request.Builder()
+                            .url(url + "/payway")
+                            .post(body)
+                            .build();
+                    Response response = client.newCall(request).execute();
+                    if (!response.isSuccessful()) {
+                        throw new Exception("Failed to add payment method: " + methodName);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    Toast.makeText(RegisterActivity.this, "Failed to add default payment methods", Toast.LENGTH_SHORT).show();
+                });
+            }
+        }).start();
+    }
+    
 }
