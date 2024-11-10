@@ -25,6 +25,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -44,4 +47,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.google.android.material:material:1.9.0'
     api 'com.alipay.sdk:alipaysdk-android:+@aar'
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.lifecycle:lifecycle-viewmodel:2.5.0'
+        force 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
+    }
 }
