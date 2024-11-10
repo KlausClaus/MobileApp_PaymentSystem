@@ -155,7 +155,8 @@ export default {
           { required: true, message: 'Please enter name', trigger: 'blur' }
         ],
         grade: [
-          { required: true, message: 'Please enter grade', trigger: 'blur' }
+          { required: true, message: 'Please enter grade', trigger: 'blur' },
+          { validator: this.validateAcademicYear, trigger: 'blur' }
         ],
         classes: [
           { required: true, message: 'Please enter class', trigger: 'blur' }
@@ -173,6 +174,14 @@ export default {
     this.load();
   },
   methods: {
+    validateAcademicYear(rule, value, callback) {
+      const year = Number(value);
+      if (!/^\d+$/.test(value) || year < 2024) {
+        callback(new Error('Please enter a valid year (≥ 2024)'));
+      } else {
+        callback();
+      }
+    },
     load() {
       this.request.get("/student/page", {
         params: {

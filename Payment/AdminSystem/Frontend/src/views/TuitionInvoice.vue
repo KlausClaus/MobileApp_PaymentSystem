@@ -140,7 +140,7 @@
 
         <div class="fees-section">
           <h3>Fee Details</h3>
-          <el-form-item label="*Tuition Fee" prop="tuitionFee">
+          <el-form-item label="Tuition Fee" prop="tuitionFee">
             <el-input-number
                 v-model="form.tuitionFee"
                 :min="0"
@@ -150,7 +150,7 @@
             </el-input-number>
           </el-form-item>
 
-          <el-form-item label="*Accommodation Fee" prop="accommodationFee">
+          <el-form-item label="Accommodation Fee" prop="accommodationFee">
             <el-input-number
                 v-model="form.accommodationFee"
                 :min="0"
@@ -249,9 +249,15 @@ export default {
       rules: {
         studentName: [
           { required: true, message: 'Please select a student', trigger: 'change' }
+
         ],
         academicYear: [
-          { required: true, message: 'Please enter academic year', trigger: 'blur' }
+          { required: true, message: 'Please enter academic year', trigger: 'blur' },
+          { validator: this.validateAcademicYear, trigger: 'blur' }
+        ],
+        tuitionFee: [
+          { required: true, message: 'Please enter Tuition Fee', trigger: 'blur' },
+          { validator: this.validateTuitionFee, trigger: 'blur' }
         ]
       }
     }
@@ -260,6 +266,21 @@ export default {
     this.load()
   },
   methods: {
+    validateAcademicYear(rule, value, callback) {
+      const year = Number(value);
+      if (!/^\d+$/.test(value) || year < 2024) {
+        callback(new Error('Please enter a valid year (≥ 2024)'));
+      } else {
+        callback();
+      }
+    },
+    validateTuitionFee(rule, value, callback) {
+      if (value < 1) {
+        callback(new Error('Tuition Fee must be at least 1'));
+      } else {
+        callback();
+      }
+    },
     load() {
       console.log("Searching for:", this.studentName);
       this.request.get("/tuitionInvoice/page", {
