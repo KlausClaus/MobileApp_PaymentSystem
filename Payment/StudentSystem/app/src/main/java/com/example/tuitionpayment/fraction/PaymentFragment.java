@@ -302,9 +302,9 @@ public class PaymentFragment extends Fragment {
                 if (jsonObject.getString("code").equals("200")) {
                     getActivity().runOnUiThread(() -> {
                         Toast.makeText(getContext(), "Settings saved", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
-//                        startActivity(intent);
-//                        getActivity().finish();
+                        Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
                     });
                 }
             } catch (Exception e) {
