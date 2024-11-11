@@ -1,15 +1,14 @@
 package com.example.tuitionpayment.fraction;
+
 import static com.example.tuitionpayment.util.GlobalUrl.url;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,13 +16,20 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
+import com.example.tuitionpayment.R;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -31,6 +37,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class PaymentFragment extends Fragment {
+
+
     private LinearLayout paymentMethodsContainer;
     private Button addPaymentMethod;
     private Button confirmTransaction;
@@ -40,23 +48,24 @@ public class PaymentFragment extends Fragment {
     private int selectedPaymentMethodId = -1;
     private int chushiId = -1;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_payment, container, false);
-
         return root;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_payment);
 
-        usInfo = getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        usInfo = getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         username = usInfo.getString("username", null);
 
-        paymentMethodsContainer = findViewById(R.id.paymentMethodsContainer);
-        addPaymentMethod = findViewById(R.id.addPaymentMethod);
-        confirmTransaction = findViewById(R.id.confirmTransaction);
+        paymentMethodsContainer = getActivity().findViewById(R.id.paymentMethodsContainer);
+        addPaymentMethod = getActivity().findViewById(R.id.addPaymentMethod);
+        confirmTransaction = getActivity().findViewById(R.id.confirmTransaction);
 
         loadPaymentMethods();
 
@@ -94,7 +103,7 @@ public class PaymentFragment extends Fragment {
                         );
                         paymentMethods.add(paymentMethod);
                     }
-                    runOnUiThread(this::updatePaymentMethodsView);
+                    getActivity().runOnUiThread(this::updatePaymentMethodsView);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -105,7 +114,7 @@ public class PaymentFragment extends Fragment {
     private void updatePaymentMethodsView() {
         paymentMethodsContainer.removeAllViews();
         for (PaymentMethod method : paymentMethods) {
-            View paymentMethodView = LayoutInflater.from(this).inflate(R.layout.item_payment_method, paymentMethodsContainer, false);
+            View paymentMethodView = LayoutInflater.from(getContext()).inflate(R.layout.item_payment_method, paymentMethodsContainer, false);
             ImageView icon = paymentMethodView.findViewById(R.id.paymentIcon);
             TextView name = paymentMethodView.findViewById(R.id.paymentName);
             RadioButton radioButton = paymentMethodView.findViewById(R.id.paymentRadioButton);
@@ -116,7 +125,7 @@ public class PaymentFragment extends Fragment {
             icon.setImageResource(getIconResourceIdForPaymentMethod(method.getName()));
 
             name.setText(method.getName());
-            if (method.isDefault()==1){
+            if (method.isDefault() == 1) {
                 chushiId = method.getId();
                 radioButton.setChecked(true);
 
@@ -129,7 +138,7 @@ public class PaymentFragment extends Fragment {
 
             deleteButton.setOnClickListener(v -> {
                 // Show confirmation dialog before deleting
-                AlertDialog.Builder builder = new AlertDialog.Builder(PaymentFragment.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Delete Payment Method");
                 builder.setPositiveButton("Yes", (dialog, which) -> {
                     // Call the method to delete the payment method
@@ -159,7 +168,7 @@ public class PaymentFragment extends Fragment {
                 return 0; // 默认图标，确保存在
         }
     }
-    
+
     private void updateRadioButtons() {
         for (int i = 0; i < paymentMethodsContainer.getChildCount(); i++) {
             View child = paymentMethodsContainer.getChildAt(i);
@@ -169,11 +178,11 @@ public class PaymentFragment extends Fragment {
     }
 
     private void showAddPaymentMethodDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add Payment Method");
 
         // 设置输入框
-        final EditText input = new EditText(this);
+        final EditText input = new EditText(getContext());
         builder.setView(input);
 
         builder.setPositiveButton("Add", (dialog, which) -> {
@@ -181,7 +190,7 @@ public class PaymentFragment extends Fragment {
             if (!newPaymentMethod.isEmpty()) {
                 addNewPaymentMethod(newPaymentMethod);
             } else {
-                Toast.makeText(PaymentFragment.this, "The payment method cannot be empty", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "The payment method cannot be empty", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -220,7 +229,7 @@ public class PaymentFragment extends Fragment {
                             data.getInt("isDefault")
                     );
                     paymentMethods.add(newMethod);
-                    runOnUiThread(this::updatePaymentMethodsView);
+                    getActivity().runOnUiThread(this::updatePaymentMethodsView);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -242,7 +251,7 @@ public class PaymentFragment extends Fragment {
 
                 if (jsonObject.getString("code").equals("200")) {
                     paymentMethods.remove(method);
-                    runOnUiThread(this::updatePaymentMethodsView);
+                    getActivity().runOnUiThread(this::updatePaymentMethodsView);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -291,11 +300,11 @@ public class PaymentFragment extends Fragment {
                 JSONObject jsonObject = new JSONObject(responseBody);
 
                 if (jsonObject.getString("code").equals("200")) {
-                    runOnUiThread(() -> {
-                        Toast.makeText(PaymentFragment.this, "Settings saved", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(PaymentFragment.this, PaymentFragment.class);
-                        startActivity(intent);
-                        finish();
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getContext(), "Settings saved", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
+//                        startActivity(intent);
+//                        getActivity().finish();
                     });
                 }
             } catch (Exception e) {

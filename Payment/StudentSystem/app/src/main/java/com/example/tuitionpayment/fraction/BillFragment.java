@@ -15,8 +15,8 @@ import com.example.tuitionpayment.R;
 import com.example.tuitionpayment.UnpaidFeesActivity;
 
 public class BillFragment extends Fragment {
-    private LinearLayout unpaidFeesView;
-    private LinearLayout paidFeesView;
+    private View unpaidFeesView;
+    private View paidFeesView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View root = inflater.inflate(R.layout.fragment_bill, container, false);
