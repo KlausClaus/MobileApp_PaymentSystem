@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.tuitionpayment.ManagePaymentActivity;
 import com.example.tuitionpayment.R;
 
 import org.json.JSONArray;
@@ -302,9 +303,10 @@ public class PaymentFragment extends Fragment {
                 if (jsonObject.getString("code").equals("200")) {
                     getActivity().runOnUiThread(() -> {
                         Toast.makeText(getContext(), "Settings saved", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
-                        startActivity(intent);
-                        getActivity().finish();
+//                        Intent intent = new Intent(getActivity(), ManagePaymentActivity.class);
+//                        Intent intent = new Intent(getActivity(), PaymentFragment.class);
+//                        startActivity(intent);
+//                        getActivity().finish();
                     });
                 }
             } catch (Exception e) {
