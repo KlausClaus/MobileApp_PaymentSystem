@@ -47,14 +47,32 @@ public final class Base64 {
 
 	}
 
+	/**
+	 * Utility method to check if a character is considered a whitespace.
+	 *
+	 * @param octect The character to check.
+	 * @return {@code true} if the character is a whitespace character; otherwise, {@code false}.
+	 */
 	private static boolean isWhiteSpace(char octect) {
 		return (octect == 0x20 || octect == 0xd || octect == 0xa || octect == 0x9);
 	}
 
+	/**
+	 * Utility method to check if a character is a padding character.
+	 *
+	 * @param octect The character to check.
+	 * @return {@code true} if the character is a padding character; otherwise, {@code false}.
+	 */
 	private static boolean isPad(char octect) {
 		return (octect == PAD);
 	}
 
+	/**
+	 * Utility method to check if a character is valid Base64 data.
+	 *
+	 * @param octect The character to check.
+	 * @return {@code true} if the character is valid Base64 data; otherwise, {@code false}.
+	 */
 	private static boolean isData(char octect) {
 		return (octect < BASELENGTH && base64Alphabet[octect] != -1);
 	}

@@ -36,6 +36,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Activity for managing payment methods. Allows users to add, delete, view, and save payment methods.
+ */
 public class ManagePaymentActivity extends AppCompatActivity {
 
     private LinearLayout paymentMethodsContainer;
@@ -47,6 +50,11 @@ public class ManagePaymentActivity extends AppCompatActivity {
     private int selectedPaymentMethodId = -1;
     private int chushiId = -1;
 
+    /**
+     * Called when the activity is starting. Initializes views and loads payment methods.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +73,9 @@ public class ManagePaymentActivity extends AppCompatActivity {
         confirmTransaction.setOnClickListener(v -> savePaymentMethods());
     }
 
+    /**
+     * Loads payment methods from the server and updates the UI.
+     */
     private void loadPaymentMethods() {
         new Thread(() -> {
             try {
@@ -103,6 +114,9 @@ public class ManagePaymentActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Updates the UI to display the current list of payment methods.
+     */
     private void updatePaymentMethodsView() {
         paymentMethodsContainer.removeAllViews();
         for (PaymentMethod method : paymentMethods) {
@@ -113,7 +127,6 @@ public class ManagePaymentActivity extends AppCompatActivity {
             Button deleteButton = paymentMethodView.findViewById(R.id.deletePaymentMethod);
 
             // Set icon based on payment method name
-            // You need to add proper drawables for each payment method
             icon.setImageResource(getIconResourceIdForPaymentMethod(method.getName()));
 
             name.setText(method.getName());
@@ -144,6 +157,12 @@ public class ManagePaymentActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Returns the drawable resource ID for a given payment method name.
+     *
+     * @param methodName the name of the payment method
+     * @return the drawable resource ID, or 0 if not found
+     */
     private int getIconResourceIdForPaymentMethod(String methodName) {
         switch (methodName.toLowerCase()) {
             case "alipay":
@@ -157,10 +176,13 @@ public class ManagePaymentActivity extends AppCompatActivity {
             case "visa":
                 return R.drawable.visa_logo;
             default:
-                return 0; // 默认图标，确保存在
+                return 0;
         }
     }
-    
+
+    /**
+     * Updates the selection state of all radio buttons in the payment methods list.
+     */
     private void updateRadioButtons() {
         for (int i = 0; i < paymentMethodsContainer.getChildCount(); i++) {
             View child = paymentMethodsContainer.getChildAt(i);
@@ -169,11 +191,13 @@ public class ManagePaymentActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Displays a dialog for adding a new payment method.
+     */
     private void showAddPaymentMethodDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add Payment Method");
 
-        // 设置输入框
         final EditText input = new EditText(this);
         builder.setView(input);
 
@@ -191,7 +215,11 @@ public class ManagePaymentActivity extends AppCompatActivity {
         builder.show();
     }
 
-
+    /**
+     * Sends a request to add a new payment method to the server and updates the UI.
+     *
+     * @param paymentMethodName the name of the new payment method
+     */
     private void addNewPaymentMethod(String paymentMethodName) {
         new Thread(() -> {
             try {
@@ -229,6 +257,11 @@ public class ManagePaymentActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Sends a request to delete a payment method and updates the UI.
+     *
+     * @param method the payment method to be deleted
+     */
     private void deletePaymentMethod(PaymentMethod method) {
         new Thread(() -> {
             try {
@@ -251,12 +284,15 @@ public class ManagePaymentActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Sends requests to update the default payment method on the server.
+     */
     private void savePaymentMethods() {
         new Thread(() -> {
             try {
                 OkHttpClient client = new OkHttpClient();
                 if (chushiId != selectedPaymentMethodId) {
-                    // 将 chushiId 对应的 isDefault 置为 0
+
                     JSONObject updateDefaultJson = new JSONObject();
                     updateDefaultJson.put("id", chushiId);
                     updateDefaultJson.put("isDefault", 0);
@@ -269,10 +305,9 @@ public class ManagePaymentActivity extends AppCompatActivity {
                             .url(url + "/payway")
                             .post(updateDefaultBody)
                             .build();
-                    client.newCall(updateDefaultRequest).execute(); // 执行更新请求
+                    client.newCall(updateDefaultRequest).execute();
                 }
 
-                // 更新 selectedPaymentMethodId 对应的 isDefault 置为 1
                 JSONObject setDefaultJson = new JSONObject();
                 setDefaultJson.put("email", username);
                 setDefaultJson.put("isDefault", 1);
@@ -286,7 +321,7 @@ public class ManagePaymentActivity extends AppCompatActivity {
                         .url(url + "/payway")
                         .post(setDefaultBody)
                         .build();
-                Response response = client.newCall(setDefaultRequest).execute(); // 执行设置请求
+                Response response = client.newCall(setDefaultRequest).execute();
 
                 String responseBody = response.body().string();
                 JSONObject jsonObject = new JSONObject(responseBody);

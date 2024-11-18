@@ -17,48 +17,70 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.List;
 
+
+/**
+ * Custom adapter for displaying a list of {@link Item} objects in a ListView or GridView.
+ * Provides a reusable layout for each item in the list.
+ */
 public class ItemAdapter extends ArrayAdapter<Item> {
+
+    /**
+     * Context of the application or activity using this adapter.
+     */
     private Context context;
 
+    /**
+     * Constructor for the {@link ItemAdapter}.
+     *
+     * @param context The context of the calling activity or application.
+     * @param items   The list of {@link Item} objects to display.
+     */
     public ItemAdapter(Context context, List<Item> items) {
         super(context, 0, items);
         this.context = context;
     }
 
+    /**
+     * Provides a view for an adapter view (e.g., ListView) to display data at the specified position.
+     *
+     * @param position    The position of the item within the adapter's data set.
+     * @param convertView The old view to reuse, if possible.
+     * @param parent      The parent view that this view will eventually be attached to.
+     * @return A View corresponding to the data at the specified position.
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Item item = getItem(position); // 获取当前的Item实例
+        Item item = getItem(position); // Retrieve the current Item instance
         View view;
         ViewHolder viewHolder;
 
         if (convertView == null) {
-            // 加载自定义布局
+            // Inflate the custom layout for the item
             view = LayoutInflater.from(getContext()).inflate(R.layout.item_layout, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.academicYear = view.findViewById(R.id.academicYear);
             viewHolder.totalFee = view.findViewById(R.id.totalFee);
             viewHolder.major = view.findViewById(R.id.major);
             viewHolder.createdTime = view.findViewById(R.id.createdTime);
-            view.setTag(viewHolder); // 将ViewHolder存储在View中
+            view.setTag(viewHolder); // Store ViewHolder in the view
         } else {
             view = convertView;
-            viewHolder = (ViewHolder) view.getTag(); // 重新获取ViewHolder
+            viewHolder = (ViewHolder) view.getTag(); // Reuse the existing ViewHolder
         }
 
-        // 设置名称、价格
+        // Set data to the views
         viewHolder.academicYear.setText(item.getAcademicYear());
         viewHolder.createdTime.setText(item.getCreatedTime());
         viewHolder.major.setText(item.getMajor());
         viewHolder.totalFee.setText("$" + String.valueOf(item.getTotalFee()));
 
-
-
-
-
         return view;
     }
 
-    // ViewHolder 用于缓存控件
+    /**
+     * ViewHolder class to cache the views for better performance.
+     * Holds references to the TextViews in the layout.
+     */
     static class ViewHolder {
         TextView academicYear;
         TextView totalFee;

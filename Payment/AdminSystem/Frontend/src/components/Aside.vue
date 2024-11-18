@@ -6,34 +6,39 @@
            :default-active="$route.path"
            router
   >
-    <!-- Logo区域 -->
+    <!-- Logo area -->
     <div class="logo-container">
       <img src="../assets/logo.png" alt="" class="logo-img">
       <span class="title"> Management </span>
     </div>
 
-    <!-- 菜单区域 -->
+    <!-- Menu area -->
     <div class="menu-container">
+      <!-- Home menu item -->
       <el-menu-item index="/home" class="menu-item">
         <i class="el-icon-s-home"></i>
         <span>Home</span>
       </el-menu-item>
 
+      <!-- User management menu item -->
       <el-menu-item index="/user" class="menu-item">
         <i class="el-icon-user"></i>
         <span>User Manage</span>
       </el-menu-item>
 
+      <!-- Tuition invoice management menu item -->
       <el-menu-item index="/tuitionInvoice" class="menu-item">
         <i class="el-icon-document"></i>
         <span>Bill Manage</span>
       </el-menu-item>
 
+      <!-- Student management menu item -->
       <el-menu-item index="/student" class="menu-item">
         <i class="el-icon-reading"></i>
         <span>Student Manage</span>
       </el-menu-item>
 
+      <!-- Statistical analysis menu item -->
       <el-menu-item index="/analysis" class="menu-item">
         <i class="el-icon-data-analysis"></i>
         <span>Statistical Analysis</span>
@@ -47,7 +52,9 @@ export default {
   name: "Aside",
   data() {
     return {
+      // Retrieve admin data from local storage, or set to null if not found
       admin: localStorage.getItem("admin") ? JSON.parse(localStorage.getItem("admin")) : null,
+      // Retrieve photo data from local storage, or set to null if not found
       photo: localStorage.getItem("photo") ? JSON.parse(localStorage.getItem("photo")) : null,
     }
   },
@@ -55,14 +62,15 @@ export default {
 </script>
 
 <style scoped>
+/* Styles for the side menu */
 .aside-menu {
   min-height: 100%;
   overflow-x: hidden;
   border-right: none;
   width: 200px !important;
-
 }
 
+/* Logo section styles */
 .logo-container {
   height: 60px;
   padding: 0 16px;
@@ -86,6 +94,7 @@ export default {
   white-space: nowrap;
 }
 
+/* Styles for the menu container */
 .menu-container {
   margin-top: 10px;
 }
@@ -97,7 +106,7 @@ export default {
   margin-bottom: 4px;
 }
 
-/* 图标样式 */
+/* Icon styles */
 i {
   font-size: 18px;
   width: 24px;
@@ -105,20 +114,19 @@ i {
   margin-right: 8px;
 }
 
-/* 菜单项悬停效果 */
+/* Hover effect for menu items */
 .el-menu-item:hover {
   background-color: rgb(38, 52, 69) !important;
 }
 
-/* 选中菜单项样式 */
+/* Active menu item styles */
 .el-menu-item.is-active {
   background-color: #1890ff !important;
 }
 
-/* 滚动条美化 */
+/* Scrollbar customization */
 .aside-menu::-webkit-scrollbar {
   display: none;
-  /*width: 6px;*/
 }
 
 .aside-menu::-webkit-scrollbar-thumb {
@@ -130,7 +138,7 @@ i {
   background: transparent;
 }
 
-/* 去除 element-ui 默认样式 */
+/* Remove default Element-UI styles */
 :deep(.el-menu) {
   border-right: none !important;
 }
@@ -146,7 +154,7 @@ i {
   font-size: 14px;
 }
 
-/* 处理文字溢出 */
+/* Handle text overflow in menu items */
 :deep(.el-menu-item span) {
   display: inline-block;
   width: calc(100% - 40px);

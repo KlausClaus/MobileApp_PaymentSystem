@@ -1,5 +1,6 @@
 <template>
   <div class="home-container">
+    <!-- Welcome section -->
     <div class="welcome-section">
       <h1 class="title">
         Welcome to the Tuition Management System
@@ -8,6 +9,7 @@
         Efficiently manage your educational finances
       </p>
 
+      <!-- Features grid -->
       <div class="features-grid">
         <div
             v-for="(feature, index) in features"
@@ -15,7 +17,7 @@
             class="feature-card"
             :style="{ animationDelay: `${index * 0.2}s` }"
         >
-          <!-- 将每个 feature 包裹在 router-link 中，实现点击跳转 -->
+          <!-- Each feature is wrapped in a router-link for navigation -->
           <router-link :to="feature.url" class="feature-link">
             <i :class="feature.icon"></i>
             <h3>{{ feature.title }}</h3>
@@ -32,12 +34,13 @@ export default {
   name: "Home",
   data() {
     return {
+      // Features displayed on the home page
       features: [
         {
           icon: 'fas fa-users',
           title: 'User Management',
           description: 'Manage staff and admin accounts',
-          url: '/user' // 添加 URL 属性
+          url: '/user' // URL for navigation
         },
         {
           icon: 'fas fa-file-invoice-dollar',
@@ -58,19 +61,20 @@ export default {
           url: '/analysis'
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>
+/* Container styles */
 .home-container {
   min-height: 80vh;
   padding: clamp(1rem, 3vw, 2rem);
   margin: 0 auto;
-  /*background: linear-gradient(145deg, rgba(245, 240, 240, 0.42) 0%, #bba4a4 100%);*/
 }
 
+/* Welcome section styles */
 .welcome-section {
   text-align: center;
   padding: clamp(2rem, 4vh, 3rem) 0;
@@ -94,16 +98,18 @@ export default {
   animation: fadeInUp 0.8s ease-out;
 }
 
+/* Features grid styles */
 .features-grid {
   display: grid;
   gap: clamp(2rem, 4vw, 4rem);
   padding: clamp(1rem, 2vw, 2rem);
-  grid-template-columns: repeat(2, 1fr); /* 每行两个卡片 */
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
   max-width: 1400px;
   height: 700px;
   margin: 0 auto;
 }
 
+/* Feature card styles */
 .feature-card {
   height: 100%;
   background: #f8f4f4;
@@ -135,7 +141,7 @@ export default {
 
 .feature-card i {
   font-size: clamp(1.8rem, 3vw, 2.2rem);
-  color: #42b983;
+  color: #42b983; /* Icon color */
   margin-bottom: 1rem;
   transition: transform 0.3s ease;
 }
@@ -160,7 +166,7 @@ export default {
   text-align: center;
 }
 
-/* 动画定义 */
+/* Animation definitions */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -183,10 +189,10 @@ export default {
   }
 }
 
-/* 响应式布局优化 */
+/* Responsive layout for smaller screens */
 @media (max-width: 768px) {
   .features-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* One card per row */
     gap: 1rem;
     padding: 0 1rem;
   }

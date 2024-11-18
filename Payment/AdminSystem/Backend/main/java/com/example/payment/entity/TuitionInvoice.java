@@ -5,25 +5,97 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+/**
+ * Entity representing a tuition invoice.
+ * Maps to the "tuition" table in the database.
+ */
 @Data
-@TableName(value = "tuition") // 对应数据库表名
+@TableName(value = "tuition")
 public class TuitionInvoice {
-    @TableId(type = IdType.AUTO) // 主键，自增
-    private Integer id; // 唯一标识符
+    /**
+     * Unique identifier for the tuition invoice.
+     * Automatically generated primary key.
+     */
+    @TableId(type = IdType.AUTO) // Primary key, auto-increment
+    private Integer id;
+
+    /**
+     * Status of the tuition invoice (e.g., paid, pending).
+     */
     private Integer status;
-    private String studentName; // 学生姓名
-    private String studentEmail; // 邮箱
-    private String major; // 专业
-    private String academicYear; // 学年或学期
-    private Double totalFee; // 学费总额
-    private Double tuitionFee; // 学费
-    private Double accommodationFee; // 住宿费（可选）
-    private Double bookFee; // 书本费（可选）
-    private Double materialFee; // 材料费（可选）
-    private Double activityFee; // 课外活动费（可选）
-    private Double examFee; // 考试费（可选）
-    private String paymentMethod; // 付款方式
-    private Double paymentAmount; // 付款金额
-    private String createdTime; // 创建时间
-    private String paymentTime; // 付款时间（可选）
+
+    /**
+     * Name of the student associated with the tuition invoice.
+     */
+    private String studentName;
+
+    /**
+     * Email of the student associated with the tuition invoice.
+     */
+    private String studentEmail;
+
+    /**
+     * Major of the student.
+     */
+    private String major;
+
+    /**
+     * Academic year or semester for the tuition invoice.
+     */
+    private String academicYear;
+
+    /**
+     * Total fee for the tuition invoice.
+     */
+    private Double totalFee;
+
+    /**
+     * Tuition fee for the academic period.
+     */
+    private Double tuitionFee;
+
+    /**
+     * Accommodation fee (optional).
+     */
+    private Double accommodationFee;
+
+    /**
+     * Book fee (optional).
+     */
+    private Double bookFee;
+
+    /**
+     * Material fee (optional).
+     */
+    private Double materialFee;
+
+    /**
+     * Activity fee for extracurricular activities (optional).
+     */
+    private Double activityFee;
+
+    /**
+     * Exam fee (optional).
+     */
+    private Double examFee;
+
+    /**
+     * Payment method used for the tuition invoice.
+     */
+    private String paymentMethod;
+
+    /**
+     * Amount paid for the tuition invoice.
+     */
+    private Double paymentAmount;
+
+    /**
+     * Time when the tuition invoice was created.
+     */
+    private String createdTime;
+
+    /**
+     * Time when the payment was made (optional).
+     */
+    private String paymentTime;
 }

@@ -19,12 +19,24 @@ import java.util.List;
 @RequestMapping("/tuitionInvoice")
 public class TuitionInvoiceController {
 
+    /**
+     * Service for tuition invoice-related operations.
+     */
     @Resource
     private ITuitionInvoiceService tuitionInvoiceService;
+    /**
+     * Service for user-related operations.
+     */
     @Resource
     private IUserService userService;
 
-    // 新增或者更新
+    /**
+     * Add or update a tuition invoice record.
+     * If the record exists, it will be updated; otherwise, a new record will be added.
+     *
+     * @param tuitionInvoice The tuition invoice object to be added or updated.
+     * @return A {@code Result} object containing the user associated with the given invoice.
+     */
     @PostMapping
     public Result save(@RequestBody TuitionInvoice tuitionInvoice) {
         tuitionInvoiceService.saveOrUpdate(tuitionInvoice);
@@ -35,7 +47,12 @@ public class TuitionInvoiceController {
         return Result.sucess(user);
     }
 
-    //查询
+    /**
+     * Query all tuition invoice records with an optional name filter.
+     *
+     * @param name The name filter (optional, default is an empty string).
+     * @return A {@code Result} object containing the list of tuition invoices.
+     */
     @GetMapping("/list")
     public Result findAll(@RequestParam(defaultValue = "") String name) {
         QueryWrapper<TuitionInvoice> queryWrapper = new QueryWrapper<>();
@@ -46,6 +63,12 @@ public class TuitionInvoiceController {
         return Result.sucess(tuitionInvoiceService.list(queryWrapper));
     }
 
+    /**
+     * Query tuition invoices by student email.
+     *
+     * @param tuitionInvoice The tuition invoice object containing the student's email.
+     * @return A {@code Result} object containing the list of tuition invoices for the given email.
+     */
     @PostMapping("/listByEmail")
     public Result listByEmail(@RequestBody TuitionInvoice tuitionInvoice) {
         System.out.println(tuitionInvoice);
@@ -55,6 +78,12 @@ public class TuitionInvoiceController {
         return Result.sucess(tuitionInvoiceService.list(queryWrapper));
     }
 
+    /**
+     * Query tuition invoices by student email and status.
+     *
+     * @param tuitionInvoice The tuition invoice object containing the student's email and status.
+     * @return A {@code Result} object containing the list of tuition invoices matching the criteria.
+     */
     @PostMapping("/listByEmailStatus")
     public Result listByEmailStatus(@RequestBody TuitionInvoice tuitionInvoice) {
         System.out.println(tuitionInvoice);
@@ -64,6 +93,14 @@ public class TuitionInvoiceController {
         return Result.sucess(tuitionInvoiceService.list(queryWrapper));
     }
 
+    /**
+     * Paginate through tuition invoices with an optional student name filter.
+     *
+     * @param pageNum  The page number to retrieve.
+     * @param pageSize The number of records per page.
+     * @param name     The student name filter (optional, default is an empty string).
+     * @return A {@code Result} object containing the paginated list of tuition invoices.
+     */
     @GetMapping("/page")
     public Result findPage(@RequestParam Integer pageNum,
                            @RequestParam Integer pageSize,
@@ -79,13 +116,23 @@ public class TuitionInvoiceController {
         return Result.sucess(tuitionInvoiceService.page(page, queryWrapper));
     }
 
-    //单个删除
+    /**
+     * Delete a tuition invoice by its ID.
+     *
+     * @param id The ID of the tuition invoice to be deleted.
+     * @return A {@code Result} object indicating whether the deletion was successful.
+     */
     @DeleteMapping("/del/{id}")
     public Result delete(@PathVariable Integer id) {
         return Result.sucess(tuitionInvoiceService.removeById(id)) ;
     }
 
-    //批量删除
+    /**
+     * Batch delete tuition invoices by their IDs.
+     *
+     * @param ids A list of IDs of the tuition invoices to be deleted.
+     * @return A {@code Result} object indicating whether the deletion was successful.
+     */
     @PostMapping("/del/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
         return Result.sucess(tuitionInvoiceService.removeByIds(ids));

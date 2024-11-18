@@ -1,52 +1,59 @@
 <template>
   <div class="tuition-container">
-    <!-- 搜索和操作区域 -->
+    <!-- Search and Action Area -->
     <div class="header-actions">
       <div class="search-bar">
+        <!-- Input for searching student by name -->
         <el-input
             v-model="studentName"
             placeholder="Please enter student name"
             prefix-icon="el-icon-search"
             clearable
-            class="search-input">
-        </el-input>
+            class="search-input"
+        ></el-input>
         <el-button type="primary" @click="load">Search</el-button>
         <el-button type="warning" @click="reset">Reset</el-button>
       </div>
 
       <div class="operation-buttons">
+        <!-- Button to add a new tuition bill -->
         <el-button
             type="primary"
             icon="el-icon-plus"
-            @click="dialogFormVisible = true">
+            @click="dialogFormVisible = true"
+        >
           New Tuition Bill
         </el-button>
 
+        <!-- Button for batch deletion -->
         <el-popconfirm
             title="Are you sure to delete these items?"
-            confirm-button-text='Confirm'
-            cancel-button-text='Cancel'
+            confirm-button-text="Confirm"
+            cancel-button-text="Cancel"
             icon="el-icon-warning"
             icon-color="#ff4949"
-            @confirm="deleteMore">
+            @confirm="deleteMore"
+        >
           <el-button
               slot="reference"
               type="danger"
               icon="el-icon-delete"
-              :disabled="!multipleSelection.length">
+              :disabled="!multipleSelection.length"
+          >
             Batch Delete
           </el-button>
         </el-popconfirm>
       </div>
     </div>
 
-    <!-- 数据表格 -->
+    <!-- Tuition Table -->
     <el-table
         :data="tableData"
         border
         stripe
         class="tuition-table"
-        @selection-change="handleSelectionChange">
+        @selection-change="handleSelectionChange"
+    >
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="id" label="ID" width="80"></el-table-column>
       <el-table-column prop="studentName" label="Student Name"></el-table-column>
@@ -60,25 +67,30 @@
       </el-table-column>
       <el-table-column label="Operations" width="220" align="center">
         <template slot-scope="scope">
+          <!-- Edit Button -->
           <el-button
               type="primary"
               size="mini"
               icon="el-icon-edit"
-              @click="handleEdit(scope.row)">
+              @click="handleEdit(scope.row)"
+          >
             Edit
           </el-button>
+          <!-- Delete Button -->
           <el-popconfirm
               title="Are you sure to delete this item?"
-              confirm-button-text='Confirm'
-              cancel-button-text='Cancel'
+              confirm-button-text="Confirm"
+              cancel-button-text="Cancel"
               icon="el-icon-warning"
               icon-color="#ff4949"
-              @confirm="del(scope.row.id)">
+              @confirm="del(scope.row.id)"
+          >
             <el-button
                 slot="reference"
                 type="danger"
                 size="mini"
-                icon="el-icon-delete">
+                icon="el-icon-delete"
+            >
               Delete
             </el-button>
           </el-popconfirm>
@@ -86,7 +98,7 @@
       </el-table-column>
     </el-table>
 
-    <!-- 分页器 -->
+    <!-- Pagination -->
     <el-pagination
         class="pagination"
         background
@@ -96,48 +108,56 @@
         :page-sizes="[10, 15, 20, 50, 100]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="total">
-    </el-pagination>
+        :total="total"
+    ></el-pagination>
 
-    <!-- 表单弹窗 -->
+    <!-- Dialog Form for Tuition Bill -->
     <el-dialog
         :title="form.id ? 'Edit Tuition Bill' : 'New Tuition Bill'"
         :visible.sync="dialogFormVisible"
         width="600px"
-        @close="listenDialogClose">
+        @close="listenDialogClose"
+    >
       <el-form
           ref="editForm"
           :model="form"
           label-width="150px"
-          :rules="rules">
+          :rules="rules"
+      >
+        <!-- Select Student -->
         <el-form-item label="Student" prop="studentName">
           <el-select
               v-model="form.studentName"
               placeholder="Select student"
               style="width: 100%"
               @focus="getName"
-              @change="selectChange">
+              @change="selectChange"
+          >
             <el-option
                 v-for="(item, index) in nameList"
                 :key="index"
                 :label="item"
-                :value="index">
-            </el-option>
+                :value="index"
+            ></el-option>
           </el-select>
         </el-form-item>
 
+        <!-- Display Email -->
         <el-form-item label="Email">
           <el-input v-model="form.studentEmail" disabled></el-input>
         </el-form-item>
 
+        <!-- Display Major -->
         <el-form-item label="Major">
           <el-input v-model="form.major" disabled></el-input>
         </el-form-item>
 
+        <!-- Academic Year -->
         <el-form-item label="Academic Year" prop="academicYear">
           <el-input v-model="form.academicYear"></el-input>
         </el-form-item>
 
+        <!-- Fee Details -->
         <div class="fees-section">
           <h3>Fee Details</h3>
           <el-form-item label="Tuition Fee" prop="tuitionFee">
@@ -146,8 +166,8 @@
                 :min="0"
                 :precision="2"
                 :controls="false"
-                style="width: 100%">
-            </el-input-number>
+                style="width: 100%"
+            ></el-input-number>
           </el-form-item>
 
           <el-form-item label="Accommodation Fee" prop="accommodationFee">
@@ -156,8 +176,8 @@
                 :min="0"
                 :precision="2"
                 :controls="false"
-                style="width: 100%">
-            </el-input-number>
+                style="width: 100%"
+            ></el-input-number>
           </el-form-item>
 
           <el-form-item label="Book Fee" prop="bookFee">
@@ -166,8 +186,8 @@
                 :min="0"
                 :precision="2"
                 :controls="false"
-                style="width: 100%">
-            </el-input-number>
+                style="width: 100%"
+            ></el-input-number>
           </el-form-item>
 
           <el-form-item label="Material Fee" prop="materialFee">
@@ -176,8 +196,8 @@
                 :min="0"
                 :precision="2"
                 :controls="false"
-                style="width: 100%">
-            </el-input-number>
+                style="width: 100%"
+            ></el-input-number>
           </el-form-item>
 
           <el-form-item label="Activity Fee" prop="activityFee">
@@ -186,8 +206,8 @@
                 :min="0"
                 :precision="2"
                 :controls="false"
-                style="width: 100%">
-            </el-input-number>
+                style="width: 100%"
+            ></el-input-number>
           </el-form-item>
 
           <el-form-item label="Exam Fee" prop="examFee">
@@ -196,8 +216,8 @@
                 :min="0"
                 :precision="2"
                 :controls="false"
-                style="width: 100%">
-            </el-input-number>
+                style="width: 100%"
+            ></el-input-number>
           </el-form-item>
 
           <el-form-item label="*Total Fee" prop="totalFee">
@@ -207,12 +227,13 @@
                 :precision="2"
                 :controls="false"
                 style="width: 100%"
-                disabled>
-            </el-input-number>
+                disabled
+            ></el-input-number>
           </el-form-item>
         </div>
       </el-form>
 
+      <!-- Dialog Footer -->
       <div slot="footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
         <el-button type="primary" @click="save">Confirm</el-button>
@@ -221,35 +242,35 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: "TuitionInvoice",
   data() {
-    // 计算总费用的方法
+    // Function to calculate the total fee
     const calculateTotal = (item) => {
       const fees = ['tuitionFee', 'accommodationFee', 'bookFee', 'materialFee', 'activityFee', 'examFee'];
       return fees.reduce((total, fee) => total + (Number(item[fee]) || 0), 0);
     };
 
     return {
-      tableData: [],
-      total: 0,
-      pageNum: 1,
-      pageSize: 15,
-      studentName: "",
-      studentId: "",
+      tableData: [], // Table data
+      total: 0, // Total number of items
+      pageNum: 1, // Current page number
+      pageSize: 15, // Number of items per page
+      studentName: "", // Search input for student name
+      studentId: "", // Selected student ID
       form: {
-        email: '',
-        major: '',
+        email: '', // Student email
+        major: '', // Student major
       },
-      multipleSelection: [],
-      nameList: [],
-      infoList: [],
-      dialogFormVisible: false,
-      rules: {
+      multipleSelection: [], // Selected rows in the table
+      nameList: [], // List of student names for selection
+      infoList: [], // Full student info list
+      dialogFormVisible: false, // Dialog visibility state
+      rules: { // Validation rules for the form
         studentName: [
           { required: true, message: 'Please select a student', trigger: 'change' }
-
         ],
         academicYear: [
           { required: true, message: 'Please enter academic year', trigger: 'blur' },
@@ -260,12 +281,14 @@ export default {
           { validator: this.validateTuitionFee, trigger: 'blur' }
         ]
       }
-    }
+    };
   },
   created() {
-    this.load()
+    // Load table data when the component is created
+    this.load();
   },
   methods: {
+    // Validate academic year input
     validateAcademicYear(rule, value, callback) {
       const year = Number(value);
       if (!/^\d+$/.test(value) || year < 2024) {
@@ -274,6 +297,7 @@ export default {
         callback();
       }
     },
+    // Validate tuition fee input
     validateTuitionFee(rule, value, callback) {
       if (value < 1) {
         callback(new Error('Tuition Fee must be at least 1'));
@@ -281,8 +305,8 @@ export default {
         callback();
       }
     },
+    // Load table data based on pagination and search input
     load() {
-      console.log("Searching for:", this.studentName);
       this.request.get("/tuitionInvoice/page", {
         params: {
           pageNum: this.pageNum,
@@ -290,22 +314,17 @@ export default {
           name: this.studentName
         }
       }).then(res => {
-        console.log("Response data:", res.data); // 调试：打印响应数据
         this.tableData = res.data.records;
         this.total = res.data.total;
-      })
+      });
     },
+    // Save form data and create or edit a tuition invoice
     save() {
       this.$refs.editForm.validate((valid) => {
         if (valid) {
-          this.form.status = 0
-          const now = new Date()
-          const year = now.getFullYear()
-          const month = String(now.getMonth() + 1).padStart(2, '0')
-          const day = String(now.getDate()).padStart(2, '0')
-          const hours = String(now.getHours()).padStart(2, '0')
-          const minutes = String(now.getMinutes()).padStart(2, '0')
-          this.form.createdTime = `${year}-${month}-${day} ${hours}:${minutes}`
+          this.form.status = 0; // Default status for unpaid
+          const now = new Date();
+          this.form.createdTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
           this.request.post("/tuitionInvoice", this.form).then(res => {
             if (res.code === '200') {
@@ -313,105 +332,117 @@ export default {
                 const data = {
                   uid: res.data.uid,
                   content: "Your tuition bill has been released, please pay it in time!"
-                }
+                };
                 this.request.post("/notify", data).then(() => {
-                  this.load()
-                  this.dialogFormVisible = false
-                  this.$message.success('Bill created and notification sent')
-                })
+                  this.load();
+                  this.dialogFormVisible = false;
+                  this.$message.success('Bill created and notification sent');
+                });
               } else {
-                this.load()
-                this.dialogFormVisible = false
-                this.$message.success('Bill created successfully')
+                this.load();
+                this.dialogFormVisible = false;
+                this.$message.success('Bill created successfully');
               }
             } else {
-              this.$message.error("Operation failed")
+              this.$message.error("Operation failed");
             }
-          })
+          });
         }
-      })
+      });
     },
+    // Prepare to edit a selected tuition invoice
     handleEdit(row) {
-      this.form = {...row}
-      this.dialogFormVisible = true
+      this.form = { ...row };
+      this.dialogFormVisible = true;
     },
+    // Delete a specific tuition invoice by ID
     del(id) {
       this.request.delete("/tuitionInvoice/del/" + id).then(res => {
         if (res) {
-          this.$message.success("Successfully deleted")
-          this.load()
+          this.$message.success("Successfully deleted");
+          this.load();
         } else {
-          this.$message.error("Delete failed")
+          this.$message.error("Delete failed");
         }
-      })
+      });
     },
+    // Handle changes in table row selection
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = val;
     },
+    // Reset search input and reload table data
     reset() {
-      this.studentName = ""
-      this.load()
+      this.studentName = "";
+      this.load();
     },
+    // Handle changes in page size
     handleSizeChange(pageSize) {
-      this.pageSize = pageSize
-      this.load()
+      this.pageSize = pageSize;
+      this.load();
     },
+    // Handle changes in the current page number
     handleCurrentChange(pageNum) {
-      this.pageNum = pageNum
-      this.load()
+      this.pageNum = pageNum;
+      this.load();
     },
+    // Delete selected rows in batch
     deleteMore() {
       if (this.multipleSelection.length === 0) {
-        this.$message.warning("Please select items to delete")
-        return
+        this.$message.warning("Please select items to delete");
+        return;
       }
-      const ids = this.multipleSelection.map(v => v.id)
+      const ids = this.multipleSelection.map(v => v.id);
       this.request.post("/tuitionInvoice/del/batch", ids).then(res => {
         if (res.data) {
-          this.$message.success("Batch deletion successful")
-          this.load()
+          this.$message.success("Batch deletion successful");
+          this.load();
         } else {
-          this.$message.error("Batch deletion failed")
+          this.$message.error("Batch deletion failed");
         }
-      })
+      });
     },
+    // Reset form and clear dialog fields when dialog is closed
     listenDialogClose() {
-      this.$refs.editForm && this.$refs.editForm.resetFields()
-      this.form = {}
+      this.$refs.editForm && this.$refs.editForm.resetFields();
+      this.form = {};
     },
+    // Fetch the list of students for selection
     getName() {
       this.request.get("/student/list").then(res => {
-        this.infoList = res.data
-        this.nameList = res.data.map(item => item.name)
-      })
+        this.infoList = res.data;
+        this.nameList = res.data.map(item => item.name);
+      });
     },
+    // Handle student selection change and auto-fill related fields
     selectChange(index) {
-      const selectedStudent = this.infoList[index]
-      this.studentId = selectedStudent.id
-      this.form.studentEmail = selectedStudent.email
-      this.form.major = selectedStudent.professional
-      this.form.studentName = selectedStudent.name
+      const selectedStudent = this.infoList[index];
+      this.studentId = selectedStudent.id;
+      this.form.studentEmail = selectedStudent.email;
+      this.form.major = selectedStudent.professional;
+      this.form.studentName = selectedStudent.name;
     }
   },
   watch: {
+    // Watch changes in form fields and update the total fee
     form: {
       handler(newVal) {
         const total = ['tuitionFee', 'accommodationFee', 'bookFee', 'materialFee', 'activityFee', 'examFee']
-            .reduce((sum, fee) => sum + (Number(newVal[fee]) || 0), 0)
-        this.form.totalFee = Number(total.toFixed(2))
+            .reduce((sum, fee) => sum + (Number(newVal[fee]) || 0), 0);
+        this.form.totalFee = Number(total.toFixed(2));
       },
       deep: true
     }
   }
-}
+};
 </script>
 
 <style scoped>
+/* Tuition invoice page styling */
 .tuition-container {
   padding: 20px;
 }
 
-/* 修改后的头部布局样式 */
+/* Header actions styling */
 .header-actions {
   display: flex;
   justify-content: space-between;

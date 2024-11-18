@@ -12,13 +12,13 @@ import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css';
 
 
-// 设置语言
+// Set language for ElementUI (default to English)
 ElementLocale.use(enLocale)
 
-// 使用 ElementUI
+// Use ElementUI with a global size option
 Vue.use(ElementUI)
 
-// 挂载请求到全局
+// Attach request utility to Vue prototype for global access
 Vue.prototype.request = request
 
 new Vue({
@@ -27,17 +27,19 @@ new Vue({
 }).$mount('#app')
 
 Vue.config.productionTip = false
+
+// Use ElementUI with a global size option
 Vue.use(ElementUI,{size: "small"});
 
 Vue.prototype.request = request
 
 
 new Vue({
-  router,
-  store,
+  router, // Vue Router
+  store, // Vuex Store
   Viewer,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app')// Render the App component
 
 
 

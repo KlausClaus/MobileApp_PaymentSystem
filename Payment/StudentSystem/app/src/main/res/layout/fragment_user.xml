@@ -57,10 +57,10 @@
                         android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Klaus"
-                        android:textSize="20sp"
+                        android:text="test15"
                         android:textColor="#333333"
-                        android:textStyle="bold"/>
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <ImageButton
                         android:id="@+id/copy_username"

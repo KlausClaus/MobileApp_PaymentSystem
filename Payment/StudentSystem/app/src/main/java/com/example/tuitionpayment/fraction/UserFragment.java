@@ -18,6 +18,10 @@ import com.example.tuitionpayment.NotifyActivity;
 import com.example.tuitionpayment.R;
 import com.example.tuitionpayment.UserInfoActivity;
 
+/**
+ * The UserFragment class represents a fragment that displays user-related options,
+ * including managing payments, viewing user information, notifications, and logout functionality.
+ */
 public class UserFragment extends Fragment {
 
     private View paymentManager;
@@ -31,12 +35,26 @@ public class UserFragment extends Fragment {
     private String username;
     private String password;
 
+    /**
+     * Inflates the layout for this fragment.
+     *
+     * @param inflater           the LayoutInflater object used to inflate views in the fragment
+     * @param container          the parent ViewGroup into which the fragment's view will be inserted
+     * @param savedInstanceState the Bundle containing the fragment's previously saved state, if any
+     * @return the root view of the fragment
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View root = inflater.inflate(R.layout.fragment_user, container, false);
 
         return root;
     }
 
+    /**
+     * Called when the fragment's activity has been created and the fragment's view hierarchy is instantiated.
+     * This method initializes shared preferences and sets up click listeners for the fragment's views.
+     *
+     * @param savedInstanceState the Bundle containing the fragment's previously saved state, if any
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -54,7 +72,7 @@ public class UserFragment extends Fragment {
         my_notifications = getActivity().findViewById(R.id.my_notifications);
         iv_logout = getActivity().findViewById(R.id.logout);
 
-
+        // Set up the click listener for the payment manager view
         paymentManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +80,7 @@ public class UserFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        // 设置点击个人信息的跳转
+        // Set up the click listener for the notifications view
         userInfoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +97,7 @@ public class UserFragment extends Fragment {
         });
 
 
-        // 设置点击退出登录的功能
+        // Set up the click listener for the logout view
         iv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

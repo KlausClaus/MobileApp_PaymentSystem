@@ -5,10 +5,12 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        // Stores the current route name for use across the application
         currentPathName: ''
     },
     mutations: {
-        setPath (state) {
+        // Updates the `currentPathName` state with the value stored in localStorage
+        setPath(state) {
             state.currentPathName = localStorage.getItem("currentPathName")
         }
     }

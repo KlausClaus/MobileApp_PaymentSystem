@@ -13,61 +13,45 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * 2.0 订单串本地签名逻辑
- * 注意：本 Demo 仅作为展示用途，实际项目中不能将 RSA_PRIVATE 和签名逻辑放在客户端进行！
+ * Utility class for generating and signing order parameters for Alipay payments.
+ * Note: For security reasons, signing and sensitive key handling should always occur on the server side in a production environment.
  */
-
 public class OrderInfoUtil2_0 {
 
 	/**
-	 * 构造授权参数列表
+	 * Builds a map of parameters for authorization requests.
 	 *
-	 * @param pid
-	 * @param app_id
-	 * @param target_id
-	 * @return
+	 * @param pid       The merchant's partner ID.
+	 * @param app_id    The app ID obtained during merchant registration.
+	 * @param target_id A unique identifier for the merchant.
+	 * @param rsa2      Whether to use RSA2 for signing.
+	 * @return A map containing authorization parameters.
 	 */
 	public static Map<String, String> buildAuthInfoMap(String pid, String app_id, String target_id, boolean rsa2) {
 		Map<String, String> keyValues = new HashMap<String, String>();
 
-		// 商户签约拿到的app_id，如：2013081700024223
 		keyValues.put("app_id", app_id);
-
-		// 商户签约拿到的pid，如：2088102123816631
 		keyValues.put("pid", pid);
-
-		// 服务接口名称， 固定值
 		keyValues.put("apiname", "com.alipay.account.auth");
-
-		// 服务接口名称， 固定值
 		keyValues.put("methodname", "alipay.open.auth.sdk.code.get");
-
-		// 商户类型标识， 固定值
 		keyValues.put("app_name", "mc");
-
-		// 业务类型， 固定值
 		keyValues.put("biz_type", "openservice");
-
-		// 产品码， 固定值
 		keyValues.put("product_id", "APP_FAST_LOGIN");
-
-		// 授权范围， 固定值
 		keyValues.put("scope", "kuaijie");
-
-		// 商户唯一标识，如：kkkkk091125
 		keyValues.put("target_id", target_id);
-
-		// 授权类型， 固定值
 		keyValues.put("auth_type", "AUTHACCOUNT");
-
-		// 签名类型
 		keyValues.put("sign_type", rsa2 ? "RSA2" : "RSA");
 
 		return keyValues;
 	}
 
 	/**
-	 * 构造支付订单参数列表
+	 * Builds a map of parameters for payment orders.
+	 *
+	 * @param app_id The app ID obtained during merchant registration.
+	 * @param rsa2   Whether to use RSA2 for signing.
+	 * @param price  The price of the payment.
+	 * @return A map containing payment order parameters.
 	 */
 	public static Map<String, String> buildOrderParamMap(String app_id, boolean rsa2, String price) {
 		Map<String, String> keyValues = new HashMap<String, String>();
@@ -90,11 +74,10 @@ public class OrderInfoUtil2_0 {
 	}
 
 	/**
-	 * 构造支付订单参数信息
+	 * Builds a string of order parameters from the provided map.
 	 *
-	 * @param map
-	 * 支付订单参数
-	 * @return
+	 * @param map The map of order parameters.
+	 * @return A string representation of the order parameters.
 	 */
 	public static String buildOrderParam(Map<String, String> map) {
 		List<String> keys = new ArrayList<String>(map.keySet());
@@ -115,12 +98,12 @@ public class OrderInfoUtil2_0 {
 	}
 
 	/**
-	 * 拼接键值对
+	 * Constructs a key-value pair as a string.
 	 *
-	 * @param key
-	 * @param value
-	 * @param isEncode
-	 * @return
+	 * @param key      The key.
+	 * @param value    The value.
+	 * @param isEncode Whether to URL-encode the value.
+	 * @return A string representing the key-value pair.
 	 */
 	private static String buildKeyValue(String key, String value, boolean isEncode) {
 		StringBuilder sb = new StringBuilder();
@@ -139,12 +122,12 @@ public class OrderInfoUtil2_0 {
 	}
 
 	/**
-	 * 对支付参数信息进行签名
+	 * Signs the provided order parameters.
 	 *
-	 * @param map
-	 *            待签名授权信息
-	 *
-	 * @return
+	 * @param map    The map of parameters to sign.
+	 * @param rsaKey The RSA key for signing.
+	 * @param rsa2   Whether to use RSA2 for signing.
+	 * @return The signed parameters as a string.
 	 */
 	public static String getSign(Map<String, String> map, String rsaKey, boolean rsa2) {
 		List<String> keys = new ArrayList<String>(map.keySet());
@@ -175,8 +158,9 @@ public class OrderInfoUtil2_0 {
 	}
 
 	/**
-	 * 要求外部订单号必须唯一。
-	 * @return
+	 * Generates a unique order number.
+	 *
+	 * @return A unique order number.
 	 */
 	private static String getOutTradeNo() {
 		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss", Locale.getDefault());

@@ -8,17 +8,26 @@ import android.widget.TextView;
 
 import com.example.tuitionpayment.entity.Item;
 
+/**
+ * Activity for displaying detailed information about a payment.
+ */
 public class PayDetailActivity extends AppCompatActivity {
 
+    /**
+     * Called when the activity is starting. Initializes the UI and populates it with
+     * data from the passed {@link Item} object.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_detail);
 
-        // 获取传递的 Item 对象
+        // Retrieve the passed Item object
         Item item = (Item) getIntent().getSerializableExtra("item");
 
-        // 显示学生信息
+        // Display student information
         TextView studentName = findViewById(R.id.tv_student_name);
         TextView studentEmail = findViewById(R.id.tv_student_email);
         TextView major = findViewById(R.id.tv_major);
@@ -29,7 +38,7 @@ public class PayDetailActivity extends AppCompatActivity {
         major.setText(item.getMajor());
         academicYear.setText(item.getAcademicYear());
 
-        // 显示费用明细
+        // Display fee details
         TextView tuitionFee = findViewById(R.id.tv_tuition_fee);
         TextView accommodationFee = findViewById(R.id.tv_accommodation_fee);
         TextView bookFee = findViewById(R.id.tv_book_fee);
@@ -48,7 +57,7 @@ public class PayDetailActivity extends AppCompatActivity {
         totalFee.setText(item.getTotalFee() != null ? "$" + String.valueOf(item.getTotalFee()) : "N/A");
         time.setText(item.getPaymentTime());
 
-        // 显示付款信息
+        // Display payment status
 //        TextView paymentAmount = findViewById(R.id.tv_payment_amount);
         TextView paymentStatus = findViewById(R.id.tv_payment_status);
 

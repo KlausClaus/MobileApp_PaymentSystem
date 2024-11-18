@@ -11,99 +11,106 @@
 export default {
   name: "SIdentify",
   props: {
+    // Verification code string
     identifyCode: {
-      // 默认注册码
       type: String,
-      default: "1234",
+      default: "1234", // Default verification code
     },
+    // Minimum font size
     fontSizeMin: {
-      // 字体最小值
       type: Number,
       default: 25,
     },
+    // Maximum font size
     fontSizeMax: {
-      // 字体最大值
       type: Number,
       default: 35,
     },
+    // Minimum background color value
     backgroundColorMin: {
-      // 验证码图片背景色最小值
       type: Number,
       default: 200,
     },
+    // Maximum background color value
     backgroundColorMax: {
-      // 验证码图片背景色最大值
       type: Number,
       default: 220,
     },
+    // Minimum color value for interference dots
     dotColorMin: {
-      // 背景干扰点最小值
       type: Number,
       default: 60,
     },
+    // Maximum color value for interference dots
     dotColorMax: {
-      // 背景干扰点最大值
       type: Number,
       default: 120,
     },
+    // Width of the canvas
     contentWidth: {
-      // 容器宽度
       type: Number,
       default: 90,
     },
+    // Height of the canvas
     contentHeight: {
-      // 容器高度
       type: Number,
       default: 38,
     },
   },
   methods: {
-    // 生成一个随机数
+    // Generates a random integer within the specified range
     randomNum(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     },
 
-    // 生成一个随机的颜色
+    // Generates a random RGB color within the specified range
     randomColor(min, max) {
-      let r = this.randomNum(min, max);
-      let g = this.randomNum(min, max);
-      let b = this.randomNum(min, max);
-      return "rgb(" + r + "," + g + "," + b + ")";
+      const r = this.randomNum(min, max);
+      const g = this.randomNum(min, max);
+      const b = this.randomNum(min, max);
+      return `rgb(${r}, ${g}, ${b})`;
     },
-    //画图
+
+    // Draw the captcha on the canvas
     drawPic() {
-      let canvas = document.getElementById("s-canvas");
-      //创建一个2D对象作为上下文。
-      let ctx = canvas.getContext("2d");
+      const canvas = document.getElementById("s-canvas");
+      const ctx = canvas.getContext("2d");
       ctx.textBaseline = "bottom";
-      // 绘制背景
+
+      // Draw the background
       ctx.fillStyle = "#e6ecfd";
       ctx.fillRect(0, 0, this.contentWidth, this.contentHeight);
-      // 绘制文字
+
+      // Draw the verification code characters
       for (let i = 0; i < this.identifyCode.length; i++) {
         this.drawText(ctx, this.identifyCode[i], i);
       }
+
+      // Add interference lines and dots
       this.drawLine(ctx);
       this.drawDot(ctx);
     },
-    //在画布上显示数据
+
+    // Draw individual text characters on the canvas
     drawText(ctx, txt, i) {
-      ctx.fillStyle = this.randomColor(50, 160); // 随机生成字体颜色
-      ctx.font =
-          this.randomNum(this.fontSizeMin, this.fontSizeMax) + "px SimHei"; // 随机生成字体大小
-      let x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1));
-      let y = this.randomNum(this.fontSizeMax, this.contentHeight - 5);
-      var deg = this.randomNum(-30, 30);
-      // 修改坐标原点和旋转角度
+      ctx.fillStyle = this.randomColor(50, 160); // Random text color
+      ctx.font = `${this.randomNum(this.fontSizeMin, this.fontSizeMax)}px SimHei`; // Random font size
+
+      const x = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1));
+      const y = this.randomNum(this.fontSizeMax, this.contentHeight - 5);
+      const deg = this.randomNum(-30, 30); // Random rotation angle
+
+      // Translate and rotate the canvas for the text
       ctx.translate(x, y);
       ctx.rotate((deg * Math.PI) / 180);
       ctx.fillText(txt, 0, 0);
-      // 恢复坐标原点和旋转角度
+
+      // Reset the canvas transformations
       ctx.rotate((-deg * Math.PI) / 180);
       ctx.translate(-x, -y);
     },
 
-    // 绘制干扰线
+    // Draw interference lines on the canvas
     drawLine(ctx) {
       for (let i = 0; i < 4; i++) {
         ctx.strokeStyle = this.randomColor(100, 200);
@@ -120,7 +127,7 @@ export default {
       }
     },
 
-    // 绘制干扰点
+    // Draw interference dots on the canvas
     drawDot(ctx) {
       for (let i = 0; i < 30; i++) {
         ctx.fillStyle = this.randomColor(0, 255);
@@ -137,11 +144,13 @@ export default {
     },
   },
   watch: {
+    // Watch for changes in the verification code and redraw the canvas
     identifyCode() {
       this.drawPic();
     },
   },
   mounted() {
+    // Draw the captcha when the component is mounted
     this.drawPic();
   },
 };

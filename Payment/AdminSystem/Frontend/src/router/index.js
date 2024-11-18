@@ -6,49 +6,56 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    // Root path with authentication requirement
     path: '/',
-    requireAuth: true,
-    component: () => import('../views/Manage.vue'),
-    redirect: "/home",
+    requireAuth: true, // Indicates this route requires authentication
+    component: () => import('../views/Manage.vue'), // Main layout component
+    redirect: "/home", // Default redirect to the home page
     children: [
-      { path: 'home', name: '', component: () => import('../views/Home.vue')},
-      { path: 'user', name: '', component: () => import('../views/User.vue')},
-      { path: 'tuitionInvoice', name: '', component: () => import('../views/TuitionInvoice.vue')},
-      { path: 'student', name: '', component: () => import('../views/Student.vue')},
-      { path: 'analysis', name: '', component: () => import('../views/Analysis.vue')},
-
+      // Nested routes for different pages
+      { path: 'home', name: '', component: () => import('../views/Home.vue') }, // Home page
+      { path: 'user', name: '', component: () => import('../views/User.vue') }, // User management page
+      { path: 'tuitionInvoice', name: '', component: () => import('../views/TuitionInvoice.vue') }, // Tuition invoice management page
+      { path: 'student', name: '', component: () => import('../views/Student.vue') }, // Student management page
+      { path: 'analysis', name: '', component: () => import('../views/Analysis.vue') }, // Statistical analysis page
     ]
   },
   {
+    // About page route
     path: '/about',
     name: 'About',
     component: () => import('../views/About.vue')
   },
   {
+    // Login page route
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
   },
   {
+    // Registration page route
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue')
   },
-
-
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  mode: 'history', // Use history mode to remove hash (#) from URLs
+  base: process.env.BASE_URL, // Base URL for the application
   routes
 })
 
-// 路由守卫
+// Global navigation guard
 router.beforeEach((to, from, next) => {
-  localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称，为了在Header组件中去使用
-  store.commit("setPath")  // 触发store的数据更新
-  next()  // 放行路由
+  // Save the current route name to local storage for use in the Header component
+  localStorage.setItem("currentPathName", to.name)
+
+  // Trigger Vuex store mutation to update the path
+  store.commit("setPath")
+
+  // Allow the navigation to proceed
+  next()
 })
 
 export default router

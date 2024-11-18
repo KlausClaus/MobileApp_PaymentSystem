@@ -35,14 +35,45 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Fragment representing the Home section of the application.
+ * Displays a list of tuition items and allows toggling notifications.
+ */
 public class HomeFragment extends Fragment {
 
+    /**
+     * Adapter for displaying items in the ListView.
+     */
     private ItemAdapter itemAdapter;
-    private String currentUsername;
-    private String currentUserID;
-    private ListView itemListView;
-    private boolean notificationsEnabled = true; // 默认开启通知
 
+    /**
+     * Current username of the logged-in user.
+     */
+    private String currentUsername;
+
+    /**
+     * Current user ID of the logged-in user.
+     */
+    private String currentUserID;
+
+    /**
+     * ListView to display the items.
+     */
+    private ListView itemListView;
+
+    /**
+     * Flag indicating whether notifications are enabled.
+     */
+    private boolean notificationsEnabled = true;
+
+    /**
+     * Inflates the fragment layout and initializes basic variables.
+     *
+     * @param inflater           The LayoutInflater object to inflate the views.
+     * @param container          The parent view that the fragment's UI will be attached to.
+     * @param savedInstanceState Previous state, if available.
+     * @return The root view of the fragment.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -56,40 +87,46 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Called after the fragment's activity is created.
+     * Sets up notification toggle functionality and item loading.
+     *
+     * @param savedInstanceState The saved state of the fragment.
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         final int[] notify = {-1};
         ImageView notificationButton = getActivity().findViewById(R.id.notificationButton);
 
+        // Initialize notification button based on user settings
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    OkHttpClient client = new OkHttpClient(); //创建http客户端
-                    // 创建 JSON 格式的请求体
+                    OkHttpClient client = new OkHttpClient();
+
                     JSONObject json = new JSONObject();
                     json.put("username", currentUsername);
 
 
                     RequestBody body = RequestBody.create(
-                            json.toString(), // 将 JSON 对象转换为字符串
-                            MediaType.parse("application/json; charset=utf-8") // 指定请求体类型为 JSON
+                            json.toString(),
+                            MediaType.parse("application/json; charset=utf-8")
                     );
 
                     Request request = new Request.Builder()
-                            .url(url+"/user/getOne")    //需要本机IP地址
+                            .url(url+"/user/getOne")
                             .post(body)
-                            .build();//创造http请求
-                    Response response = client.newCall(request).execute();//执行发送指令
+                            .build();
+                    Response response = client.newCall(request).execute();
                     String a = response.body().string();
                     JSONObject jsonObject = new JSONObject(a);
                     System.out.println(jsonObject);
                     if (jsonObject.getString("code").equals("200")) {
-                        // 获取 data 数组
+
                         JSONArray dataArray = jsonObject.getJSONArray("data");
 
-                        // 从数组中获取第一个元素
                         JSONObject jsonObject1 = dataArray.getJSONObject(0);
                         notify[0] = jsonObject1.getInt("notify");
                         System.out.println("111111122222");
@@ -110,43 +147,47 @@ public class HomeFragment extends Fragment {
             }
         }).start();
 
+        // Load items into the ListView
         loadItems();
+
+        // Handle notification button toggle
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                notificationsEnabled = !notificationsEnabled; // 切换状态
+                notificationsEnabled = !notificationsEnabled;
                 if (notificationsEnabled) {
-                    // 在这里实现开启通知的逻辑
+
                     notify[0]=0;
                     notificationButton.setBackgroundResource(R.drawable.notify);
 
                 } else {
-                    // 在这里实现关闭通知的逻辑
+
                     notify[0]=1;
                     notificationButton.setBackgroundResource(R.drawable.no_notify);
 
                 }
+                // Update notification settings on the server
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            OkHttpClient client = new OkHttpClient(); //创建http客户端
-                            // 创建 JSON 格式的请求体
+                            OkHttpClient client = new OkHttpClient();
+
                             JSONObject json = new JSONObject();
                             json.put("notify", notify[0]);
                             json.put("uid", currentUserID);
 
 
                             RequestBody body = RequestBody.create(
-                                    json.toString(), // 将 JSON 对象转换为字符串
-                                    MediaType.parse("application/json; charset=utf-8") // 指定请求体类型为 JSON
+                                    json.toString(),
+                                    MediaType.parse("application/json; charset=utf-8")
                             );
 
                             Request request = new Request.Builder()
-                                    .url(url+"/user")    //需要本机IP地址
+                                    .url(url+"/user")
                                     .post(body)
                                     .build();//创造http请求
-                            Response response = client.newCall(request).execute();//执行发送指令
+                            Response response = client.newCall(request).execute();
                             String a = response.body().string();
                             JSONObject jsonObject = new JSONObject(a);
                             System.out.println(jsonObject);
@@ -160,31 +201,35 @@ public class HomeFragment extends Fragment {
     }
 
 
+    /**
+     * Loads the tuition items for the current user from the server.
+     * Populates the ListView with the retrieved items.
+     */
     private void loadItems() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    OkHttpClient client = new OkHttpClient(); //创建http客户端
-                    // 创建 JSON 格式的请求体
+                    OkHttpClient client = new OkHttpClient();
+
                     JSONObject json = new JSONObject();
                     json.put("studentEmail", currentUsername);
 
                     RequestBody body = RequestBody.create(
-                            json.toString(), // 将 JSON 对象转换为字符串
-                            MediaType.parse("application/json; charset=utf-8") // 指定请求体类型为 JSON
+                            json.toString(),
+                            MediaType.parse("application/json; charset=utf-8")
                     );
 
                     Request request = new Request.Builder()
                             .url(url+"/tuitionInvoice/listByEmail")
                             .post(body)
-                            .build();//创造http请求
-                    Response response = client.newCall(request).execute();//执行发送指令
+                            .build();
+                    Response response = client.newCall(request).execute();
                     String a = response.body().string();
                     JSONObject jsonObject = new JSONObject(a);
                     System.out.println(jsonObject);
                     if (jsonObject.getString("code").equals("200")) {
-                        // 获取 data 数组
+
                         JSONArray dataArray = jsonObject.getJSONArray("data");
                         List<Item> items = convertJsonArrayToList(dataArray);
                         getActivity().runOnUiThread(new Runnable() {
@@ -193,7 +238,7 @@ public class HomeFragment extends Fragment {
                                 if (items != null && !items.isEmpty()) {
                                     itemAdapter = new ItemAdapter(getActivity(), items);
                                     itemListView.setAdapter(itemAdapter);
-                                     //设置点击事件
+
                                     itemListView.setOnItemClickListener((parent, view, position, id) -> {
                                         Item selectedItem = items.get(position);
                                         Intent intent = new Intent(getActivity(), DetailActivity.class);
@@ -215,15 +260,21 @@ public class HomeFragment extends Fragment {
         }).start();
     }
 
+    /**
+     * Converts a JSON array to a list of {@link Item} objects.
+     *
+     * @param jsonArray The JSON array containing item data.
+     * @return A list of items.
+     * @throws JSONException If parsing the JSON array fails.
+     */
     private List<Item> convertJsonArrayToList(JSONArray jsonArray) throws JSONException {
         List<Item> itemList = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            Item item = new Item();  // 创建一个空的 Item 对象
+            Item item = new Item();
 
-            // 逐步设置每个属性
             item.setId(jsonObject.getInt("id"));
             item.setStudentName(jsonObject.getString("studentName"));
             item.setStudentEmail(jsonObject.getString("studentEmail"));
@@ -232,7 +283,6 @@ public class HomeFragment extends Fragment {
             item.setTotalFee(jsonObject.getDouble("totalFee"));
             item.setTuitionFee(jsonObject.getDouble("tuitionFee"));
 
-            // 使用 optDouble 来处理可能为空的字段
             item.setAccommodationFee(jsonObject.optDouble("accommodationFee", 0.0));
             item.setBookFee(jsonObject.optDouble("bookFee", 0.0));
             item.setMaterialFee(jsonObject.optDouble("materialFee", 0.0));
@@ -243,7 +293,6 @@ public class HomeFragment extends Fragment {
 //            item.setPaymentAmount(jsonObject.getDouble("paymentAmount"));
             item.setCreatedTime(jsonObject.getString("createdTime"));
 
-            // 使用 optString 来处理可能为空的字符串字段
             item.setPaymentTime(jsonObject.optString("paymentTime", null));
 
             item.setStatus(jsonObject.getInt("status"));

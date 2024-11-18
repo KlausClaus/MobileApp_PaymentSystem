@@ -14,17 +14,27 @@ import android.widget.Toast;
 import com.example.tuitionpayment.alipay.AlipayOfSandbox;
 import com.example.tuitionpayment.entity.Item;
 
+/**
+ * Activity class that displays the details of a tuition item, including fees and student information,
+ * and allows the user to confirm payment.
+ */
 public class DetailActivity extends AppCompatActivity {
 
+    /**
+     * Called when the activity is starting. This method initializes the UI components
+     * and displays the details of the selected tuition item.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        // 获取传递的 Item 对象
+        // Retrieve the passed Item object
         Item item = (Item) getIntent().getSerializableExtra("item");
 
-        // 显示学生信息
+        // Display student information
         TextView studentName = findViewById(R.id.tv_student_name);
         TextView studentEmail = findViewById(R.id.tv_student_email);
         TextView major = findViewById(R.id.tv_major);
@@ -35,7 +45,7 @@ public class DetailActivity extends AppCompatActivity {
         major.setText(item.getMajor());
         academicYear.setText(item.getAcademicYear());
 
-        // 显示费用明细
+        // Display fee details
         TextView tuitionFee = findViewById(R.id.tv_tuition_fee);
         TextView accommodationFee = findViewById(R.id.tv_accommodation_fee);
         TextView bookFee = findViewById(R.id.tv_book_fee);
@@ -54,13 +64,14 @@ public class DetailActivity extends AppCompatActivity {
         totalFee.setText(item.getTotalFee() != null ? "$" + String.valueOf(item.getTotalFee()) : "N/A");
 
 
-        // 显示付款信息
+        // Display payment status
 //        TextView paymentAmount = findViewById(R.id.tv_payment_amount);
         TextView paymentStatus = findViewById(R.id.tv_payment_status);
 
 //        paymentAmount.setText(String.valueOf(item.getPaymentAmount()));
         paymentStatus.setText(item.getStatus() != 0 ? "paid" : "non-payment");
 
+        // Set up click listener for the confirm payment button
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -33,20 +33,30 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-
+/**
+ * Activity for user registration. Handles user input, password encryption,
+ * server-side registration, and addition of default payment methods.
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     EditText usename,usepwd;
     Button submit;
     SharedPreferences sp;
     String url= GlobalUrl.url;
+
+    /**
+     * Called when the activity is starting. Initializes the UI and sets up
+     * click listeners for the registration process.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        usename = this.findViewById(R.id.usName);			    //用户名编辑框
-        usepwd =  this.findViewById(R.id.usPassword1);				//设置初始密码编辑框
-        submit =   this.findViewById(R.id.iv_register2);				//注册按钮
+        usename = this.findViewById(R.id.usName); // Username input field
+        usepwd = this.findViewById(R.id.usPassword1); // Password input field
+        submit = this.findViewById(R.id.iv_register2); // Register button
         sp = this.getSharedPreferences("useinfo",this.MODE_PRIVATE);
         usename.setBackgroundResource(R.drawable.text_view_background);
         usepwd.setBackgroundResource(R.drawable.text_view_background);
@@ -54,11 +64,11 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         submit.setOnClickListener(new View.OnClickListener() {
-            boolean flag = true;            //判断用户是否已存在的标志位
+            boolean flag = true;
             @Override
             public void onClick(View v) {
-                String name = usename.getText().toString();                //用户名
-                String pwd01 = usepwd.getText().toString();                //密码
+                String name = usename.getText().toString();
+                String pwd01 = usepwd.getText().toString();
                 if(name.equals("")||pwd01 .equals("")){
                     Toast.makeText(RegisterActivity.this, "The user name or password cannot be empty!！", Toast.LENGTH_LONG).show();
                 }
@@ -74,12 +84,12 @@ public class RegisterActivity extends AppCompatActivity {
                                         "    \"notify\":"+"\""+0+"\",\n" +
                                         "    \"password\":"+"\""+passWordMd5+"\"\n" +
                                         "}";
-                                OkHttpClient client = new OkHttpClient(); //创建http客户端
+                                OkHttpClient client = new OkHttpClient(); // Create HTTP client
                                 Request request = new Request.Builder()
-                                        .url(url+"/user/register")    //需要本机IP地址
+                                        .url(url+"/user/register")
                                         .post(RequestBody.create(MediaType.parse("application/json"),json))
-                                        .build();//创造http请求
-                                Response response = client.newCall(request).execute();//执行发送指令
+                                        .build();// Build the HTTP request
+                                Response response = client.newCall(request).execute();
                                 String a = response.body().string();
                                 JSONObject jsonObject = new JSONObject(a);
                                 System.out.println(jsonObject);
@@ -124,6 +134,11 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Adds default payment methods for the newly registered user.
+     *
+     * @param username the username of the new user
+     */
     private void addDefaultPaymentMethods(String username) {
         new Thread(() -> {
             try {

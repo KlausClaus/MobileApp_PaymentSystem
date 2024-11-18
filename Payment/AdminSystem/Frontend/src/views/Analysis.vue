@@ -1,11 +1,18 @@
 <template>
   <div class="container">
+    <!-- Quadrants for displaying ECharts components -->
     <div class="quadrant top-left">
       <div class="echart" id="myChart"></div>
     </div>
-    <div class="quadrant top-right"><div class="echart" id="myChart1"></div></div>
-    <div class="quadrant bottom-left"><div class="echart" id="myChart2"></div></div>
-    <div class="quadrant bottom-right"><div class="echart" id="myChart3"></div></div>
+    <div class="quadrant top-right">
+      <div class="echart" id="myChart1"></div>
+    </div>
+    <div class="quadrant bottom-left">
+      <div class="echart" id="myChart2"></div>
+    </div>
+    <div class="quadrant bottom-right">
+      <div class="echart" id="myChart3"></div>
+    </div>
   </div>
 </template>
 
@@ -16,30 +23,33 @@ export default {
   name: 'QuadrantLayout',
   data() {
     return {
-      paymentData: [],
+      paymentData: [], // Holds payment-related data fetched from the server
     };
   },
   mounted() {
-    this.fetchData();
+    this.fetchData(); // Fetch data when the component is mounted
   },
   methods: {
+    // Fetches payment data from the API
     fetchData() {
       this.request.get("/tuitionInvoice/list").then(res => {
-        this.paymentData = res.data;
-        console.log(this.paymentData)
+        this.paymentData = res.data; // Store fetched data
+        console.log(this.paymentData);
+        // Initialize all charts after data is fetched
         this.initChart();
         this.initLineChart();
         this.initScatterChart();
         this.initPieChart();
       });
     },
+    // Initializes the bar chart for payment status statistics
     initChart() {
       const chartDom = document.getElementById('myChart');
       const myChart = echarts.init(chartDom);
 
-      const paidCount = this.paymentData.filter(item => item.status === 1).length;
-      const unpaidCount = this.paymentData.filter(item => item.status === 0).length;
-      console.log(paidCount)
+      const paidCount = this.paymentData.filter(item => item.status === 1).length; // Paid count
+      const unpaidCount = this.paymentData.filter(item => item.status === 0).length; // Unpaid count
+
       const option = {
         title: {
           text: 'Tuition payment status statistics',
@@ -53,7 +63,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          data: ['paid', 'non-payment']
+          data: ['Paid', 'Non-payment']
         },
         yAxis: {
           type: 'value',
@@ -65,21 +75,20 @@ export default {
             type: 'bar',
             data: [paidCount, unpaidCount],
             itemStyle: {
-              color: function(params) {
-                return params.dataIndex === 0 ? '#91cc75' : '#ee6666';
-              }
+              color: params => (params.dataIndex === 0 ? '#91cc75' : '#ee6666')
             }
           }
         ]
       };
 
-      option && myChart.setOption(option);
+      myChart.setOption(option);
 
-      // 响应式调整
-      window.addEventListener('resize', function() {
+      // Ensure chart resizes responsively
+      window.addEventListener('resize', () => {
         myChart.resize();
       });
     },
+    // Initializes the line chart for single payment distribution
     initLineChart() {
       const chartDom = document.getElementById('myChart1');
       const myChart = echarts.init(chartDom);
@@ -127,6 +136,7 @@ export default {
       myChart.setOption(option);
       window.addEventListener('resize', () => myChart.resize());
     },
+    // Initializes the scatter chart for payment time distribution
     initScatterChart() {
       const chartDom = document.getElementById('myChart2');
       const myChart = echarts.init(chartDom);
@@ -147,9 +157,8 @@ export default {
         },
         tooltip: {
           trigger: 'item',
-          formatter: function (params) {
-            return `student: ${params.data[2]}<br/>Delay in payment: ${params.data[0]}day<br/>Tuition fee: ${params.data[1]}`;
-          }
+          formatter: params =>
+              `Student: ${params.data[2]}<br/>Delay in payment: ${params.data[0]} days<br/>Tuition fee: ${params.data[1]}`
         },
         xAxis: {
           type: 'value',
@@ -168,15 +177,13 @@ export default {
             name: 'Time of payment',
             type: 'scatter',
             data: paymentDelays,
-            symbolSize: function (data) {
-              return Math.sqrt(data[0]) * 2 + 5; // 根据付款延迟调整点的大小
-            },
+            symbolSize: data => Math.sqrt(data[0]) * 2 + 5, // Adjust symbol size based on payment delay
             itemStyle: {
-              color: function (params) {
+              color: params => {
                 const delay = params.data[0];
-                if (delay <= 7) return '#91cc75'; // 一周内
-                if (delay <= 30) return '#fac858'; // 一个月内
-                return '#ee6666'; // 超过一个月
+                if (delay <= 7) return '#91cc75'; // Within one week
+                if (delay <= 30) return '#fac858'; // Within one month
+                return '#ee6666'; // More than one month
               }
             }
           }
@@ -186,11 +193,11 @@ export default {
       myChart.setOption(option);
       window.addEventListener('resize', () => myChart.resize());
     },
+    // Initializes the pie chart for payment methods
     initPieChart() {
       const chartDom = document.getElementById('myChart3');
       const myChart = echarts.init(chartDom);
 
-      // 统计不同支付方式的人数
       const paymentMethods = {};
       this.paymentData.forEach(item => {
         if (item.paymentMethod) {
@@ -198,7 +205,6 @@ export default {
         }
       });
 
-      // 转换数据格式为ECharts所需的格式
       const pieData = Object.entries(paymentMethods).map(([name, value]) => ({ name, value }));
 
       const option = {
@@ -239,6 +245,7 @@ export default {
 </script>
 
 <style scoped>
+/* Main container styles */
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -252,6 +259,7 @@ export default {
   padding: 10px;
 }
 
+/* Styles for each quadrant */
 .quadrant {
   display: flex;
   justify-content: center;
@@ -261,18 +269,7 @@ export default {
   overflow: hidden;
 }
 
-.top-left {
-}
-
-.top-right {
-}
-
-.bottom-left {
-}
-
-.bottom-right {
-}
-
+/* ECharts container styles */
 .echart {
   width: 100%;
   height: 100%;

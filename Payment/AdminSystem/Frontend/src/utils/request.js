@@ -1,49 +1,57 @@
 import axios from 'axios'
 import ElementUI from 'element-ui'
+
+// Create an axios instance with default configuration
 const request = axios.create({
-    baseURL: 'http://localhost:9090',
-    timeout: 5000
+    baseURL: 'http://localhost:9090', // Base URL for API requests
+    timeout: 5000 // Request timeout duration in milliseconds
 })
 
-// request 拦截器
-// 可以自请求发送前对请求做一些处理
-// 比如统一加token，对请求参数统一加密
-request.interceptors.request.use(config => {
-    config.headers['Content-Type'] = 'application/json;charset=utf-8';
+// Request interceptor
+// Allows handling requests before they are sent, such as adding tokens or encrypting parameters
+request.interceptors.request.use(
+    config => {
+        // Set default headers for all requests
+        config.headers['Content-Type'] = 'application/json;charset=utf-8';
 
+        return config; // Continue with the request
+    },
+    error => {
+        // Handle request errors
+        return Promise.reject(error);
+    }
+);
 
-    return config
-}, error => {
-    return Promise.reject(error)
-});
-
-// response 拦截器
-// 可以在接口响应后统一处理结果
+// Response interceptor
+// Allows unified processing of response data
 request.interceptors.response.use(
     response => {
-        let res = response.data;
-        // 如果是返回的文件
+        let res = response.data; // Extract the response data
+
+        // Handle file responses
         if (response.config.responseType === 'blob') {
-            return res
+            return res;
         }
-        // 当权限验证不通过的时候给出提示
+
+        // Handle unauthorized access (401) by showing an error message
         if (res.code === '401') {
             ElementUI.Message({
                 message: res.msg,
                 type: 'error'
             });
         }
-        // 兼容服务端返回的字符串数据
+
+        // Ensure compatibility with server responses that return strings
         if (typeof res === 'string') {
-            res = res ? JSON.parse(res) : res
+            res = res ? JSON.parse(res) : res;
         }
-        return res;
+
+        return res; // Return the processed response
     },
     error => {
-        console.log('err' + error) // for debug
-        return Promise.reject(error)
+        console.log('err' + error); // Log errors for debugging
+        return Promise.reject(error); // Reject the error for further handling
     }
-)
-
+);
 
 export default request

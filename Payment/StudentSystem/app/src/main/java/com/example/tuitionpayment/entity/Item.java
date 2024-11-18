@@ -2,27 +2,117 @@ package com.example.tuitionpayment.entity;
 
 import java.io.Serializable;
 
+/**
+ * Represents an item containing details about a student's tuition and related fees.
+ * This class is used for storing and transferring information related to tuition invoices.
+ */
 public class Item implements Serializable {
-    private Integer id; // 唯一标识符
-    private String studentName; // 学生姓名
-    private String studentEmail; // 邮箱
-    private String major; // 专业
-    private String academicYear; // 学年或学期
-    private Double totalFee; // 学费总额
-    private Double tuitionFee; // 学费
-    private Double accommodationFee; // 住宿费（可选）
-    private Double bookFee; // 书本费（可选）
-    private Double materialFee; // 材料费（可选）
-    private Double activityFee; // 课外活动费（可选）
-    private Double examFee; // 考试费（可选）
-    private String paymentMethod; // 付款方式
-    private String createdTime; // 创建时间
-    private String paymentTime; // 付款时间（可选）
+    /**
+     * Unique identifier for the item.
+     */
+    private Integer id;
+
+    /**
+     * Name of the student.
+     */
+    private String studentName;
+
+    /**
+     * Email address of the student.
+     */
+    private String studentEmail;
+
+    /**
+     * Major or field of study of the student.
+     */
+    private String major;
+
+    /**
+     * Academic year or term.
+     */
+    private String academicYear;
+
+    /**
+     * Total fee amount for the tuition.
+     */
+    private Double totalFee;
+
+    /**
+     * Tuition fee amount.
+     */
+    private Double tuitionFee;
+
+    /**
+     * Accommodation fee (optional).
+     */
+    private Double accommodationFee;
+
+    /**
+     * Book fee (optional).
+     */
+    private Double bookFee;
+
+    /**
+     * Material fee (optional).
+     */
+    private Double materialFee;
+
+    /**
+     * Extracurricular activity fee (optional).
+     */
+    private Double activityFee;
+
+    /**
+     * Examination fee (optional).
+     */
+    private Double examFee;
+
+    /**
+     * Payment method used for the tuition.
+     */
+    private String paymentMethod;
+
+    /**
+     * Timestamp of when the item was created.
+     */
+    private String createdTime;
+
+    /**
+     * Timestamp of when the payment was made (optional).
+     */
+    private String paymentTime;
+
+    /**
+     * Status of the item (e.g., paid or unpaid).
+     */
     private Integer status;
 
+    /**
+     * Constructor for creating an item with detailed fields.
+     *
+     * @param id               Unique identifier for the item.
+     * @param studentName      Name of the student.
+     * @param studentEmail     Email address of the student.
+     * @param major            Major or field of study of the student.
+     * @param academicYear     Academic year or term.
+     * @param totalFee         Total fee amount for the tuition.
+     * @param tuitionFee       Tuition fee amount.
+     * @param accommodationFee Accommodation fee (optional).
+     * @param bookFee          Book fee (optional).
+     * @param materialFee      Material fee (optional).
+     * @param activityFee      Extracurricular activity fee (optional).
+     * @param examFee          Examination fee (optional).
+     * @param paymentMethod    Payment method used for the tuition.
+     * @param createdTime      Timestamp of when the item was created.
+     * @param paymentTime      Timestamp of when the payment was made (optional).
+     * @param status           Status of the item (e.g., paid or unpaid).
+     */
     public Item(int id, String studentName, String studentEmail, String major, String academicYear, double totalFee, double tuitionFee, double accommodationFee, double bookFee, double materialFee, double activityFee, double examFee, String paymentMethod, String createdTime, String paymentTime, int status) {
     }
 
+    /**
+     * Default constructor.
+     */
     public Item() {
 
     }

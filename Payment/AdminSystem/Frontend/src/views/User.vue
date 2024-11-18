@@ -1,6 +1,6 @@
 <template>
   <div class="user-container">
-    <!-- 搜索栏 -->
+    <!-- Search Bar -->
     <div class="search-container">
       <el-input
           v-model="username"
@@ -13,10 +13,9 @@
       >
         <el-button slot="append" icon="el-icon-search" @click="load"></el-button>
       </el-input>
-<!--      <el-button type="primary" @click="handleAdd" icon="el-icon-plus">Add User</el-button>-->
     </div>
 
-    <!-- 表格 -->
+    <!-- User Table -->
     <el-table
         :data="tableData"
         border
@@ -30,12 +29,14 @@
       <el-table-column prop="username" label="Username"></el-table-column>
       <el-table-column label="Operations" width="200" align="center">
         <template slot-scope="scope">
+          <!-- Edit Button -->
           <el-button type="primary" size="mini" @click="handleEdit(scope.row)">
             Edit <i class="el-icon-edit"></i>
           </el-button>
+          <!-- Delete Button -->
           <el-popconfirm
-              confirm-button-text='Confirm'
-              cancel-button-text='Cancel'
+              confirm-button-text="Confirm"
+              cancel-button-text="Cancel"
               icon="el-icon-warning"
               icon-color="red"
               title="Are you sure to delete this user?"
@@ -49,7 +50,7 @@
       </el-table-column>
     </el-table>
 
-    <!-- 分页器 -->
+    <!-- Pagination -->
     <div class="pagination-container">
       <el-pagination
           @size-change="handleSizeChange"
@@ -58,16 +59,19 @@
           :page-sizes="[5, 10, 20, 50]"
           :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="total">
+          :total="total"
+      >
       </el-pagination>
     </div>
 
-    <!-- 新增/编辑弹窗 -->
+    <!-- Add/Edit Dialog -->
     <el-dialog :title="form.id ? 'Edit User' : 'Add User'" :visible.sync="dialogFormVisible" width="30%">
       <el-form :model="form" label-width="90px" :rules="rules" ref="form">
+        <!-- Username Input -->
         <el-form-item label="Username" prop="username">
           <el-input v-model="form.username" autocomplete="off"></el-input>
         </el-form-item>
+        <!-- Password Input (only for new users) -->
         <el-form-item label="Password" prop="password" v-if="!form.id">
           <el-input v-model="form.password" show-password></el-input>
         </el-form-item>
@@ -85,16 +89,16 @@ export default {
   name: "User",
   data() {
     return {
-      // 表格数据
+      // Table data
       tableData: [],
       total: 0,
       pageNum: 1,
       pageSize: 10,
-      username: "",
-      form: {},
-      dialogFormVisible: false,
-      multipleSelection: [],
-      // 表单验证规则
+      username: "", // Search input
+      form: {}, // Form data for add/edit
+      dialogFormVisible: false, // Dialog visibility state
+      multipleSelection: [], // Selected rows in the table
+      // Form validation rules
       rules: {
         username: [
           { required: true, message: 'Please input username', trigger: 'blur' },
@@ -105,13 +109,14 @@ export default {
           { min: 6, max: 20, message: 'Length should be 6 to 20 characters', trigger: 'blur' }
         ]
       }
-    }
+    };
   },
   created() {
-    this.load()
+    // Load table data on component creation
+    this.load();
   },
   methods: {
-    // 加载数据
+    // Fetch table data
     load() {
       this.request.get("/user/page", {
         params: {
@@ -122,63 +127,57 @@ export default {
       }).then(res => {
         this.tableData = res.data.records;
         this.total = res.data.total;
-      })
+      });
     },
-    // 保存用户
+    // Save user data
     save() {
       this.request.post("/user", this.form).then(res => {
         if (res) {
-          this.$message.success("Operation successful")
-          this.dialogFormVisible = false
-          this.load()
+          this.$message.success("Operation successful");
+          this.dialogFormVisible = false;
+          this.load();
         } else {
-          this.$message.error("Operation failed")
+          this.$message.error("Operation failed");
         }
-      })
+      });
     },
-    // 新增按钮
-    // handleAdd() {
-    //   this.dialogFormVisible = true
-    //   this.form = {}
-    // },
-    // 编辑按钮
+    // Handle editing a user
     handleEdit(row) {
-      this.form = row
-      this.dialogFormVisible = true
+      this.form = row;
+      this.dialogFormVisible = true;
     },
-    // 删除
+    // Handle deleting a user
     del(id) {
       this.request.delete("/user/" + id).then(res => {
         if (res) {
-          this.$message.success("Deleted successfully")
-          this.load()
+          this.$message.success("Deleted successfully");
+          this.load();
         } else {
-          this.$message.error("Delete failed")
+          this.$message.error("Delete failed");
         }
-      })
+      });
     },
-    // 表格多选
+    // Handle table row selection
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = val;
     },
-    // 分页大小改变
+    // Handle changes in page size
     handleSizeChange(pageSize) {
-      this.pageSize = pageSize
-      this.load()
+      this.pageSize = pageSize;
+      this.load();
     },
-    // 当前页改变
+    // Handle changes in current page
     handleCurrentChange(pageNum) {
-      this.pageNum = pageNum
-      this.load()
+      this.pageNum = pageNum;
+      this.load();
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .user-container {
   padding: 20px;
-
 }
 
 .search-container {

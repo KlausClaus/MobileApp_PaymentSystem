@@ -37,18 +37,60 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Fragment for managing payment methods.
+ * Provides functionality for adding, deleting, and setting default payment methods.
+ */
 public class PaymentFragment extends Fragment {
 
-
+    /**
+     * Container for displaying payment methods.
+     */
     private LinearLayout paymentMethodsContainer;
+
+    /**
+     * Button for adding a new payment method.
+     */
     private Button addPaymentMethod;
+
+    /**
+     * Button for confirming and saving payment method settings.
+     */
     private Button confirmTransaction;
+
+    /**
+     * SharedPreferences to store user information.
+     */
     private SharedPreferences usInfo;
+
+    /**
+     * Username of the current user.
+     */
     private String username;
+
+    /**
+     * List of available payment methods.
+     */
     private List<PaymentMethod> paymentMethods = new ArrayList<>();
+
+    /**
+     * ID of the currently selected payment method.
+     */
     private int selectedPaymentMethodId = -1;
+
+    /**
+     * ID of the initial default payment method.
+     */
     private int chushiId = -1;
 
+    /**
+     * Inflates the fragment layout.
+     *
+     * @param inflater           The LayoutInflater object to inflate the views.
+     * @param container          The parent view that the fragment's UI will be attached to.
+     * @param savedInstanceState Previous state, if available.
+     * @return The root view of the fragment.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,6 +99,12 @@ public class PaymentFragment extends Fragment {
     }
 
 
+    /**
+     * Called after the fragment's activity is created.
+     * Sets up the UI elements and loads payment methods.
+     *
+     * @param savedInstanceState The saved state of the fragment.
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -74,6 +122,9 @@ public class PaymentFragment extends Fragment {
         confirmTransaction.setOnClickListener(v -> savePaymentMethods());
     }
 
+    /**
+     * Loads payment methods from the server and updates the UI.
+     */
     private void loadPaymentMethods() {
         new Thread(() -> {
             try {
@@ -112,6 +163,9 @@ public class PaymentFragment extends Fragment {
         }).start();
     }
 
+    /**
+     * Updates the UI to display the current list of payment methods.
+     */
     private void updatePaymentMethodsView() {
         paymentMethodsContainer.removeAllViews();
         for (PaymentMethod method : paymentMethods) {
@@ -153,6 +207,12 @@ public class PaymentFragment extends Fragment {
         }
     }
 
+    /**
+     * Gets the icon resource ID for a given payment method name.
+     *
+     * @param methodName The name of the payment method.
+     * @return The resource ID of the corresponding icon.
+     */
     private int getIconResourceIdForPaymentMethod(String methodName) {
         switch (methodName.toLowerCase()) {
             case "alipay":
@@ -166,10 +226,13 @@ public class PaymentFragment extends Fragment {
             case "visa":
                 return R.drawable.visa_logo;
             default:
-                return 0; // 默认图标，确保存在
+                return 0;
         }
     }
 
+    /**
+     * Updates the radio buttons to reflect the currently selected payment method.
+     */
     private void updateRadioButtons() {
         for (int i = 0; i < paymentMethodsContainer.getChildCount(); i++) {
             View child = paymentMethodsContainer.getChildAt(i);
@@ -178,6 +241,9 @@ public class PaymentFragment extends Fragment {
         }
     }
 
+    /**
+     * Displays a dialog to add a new payment method.
+     */
     private void showAddPaymentMethodDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Add Payment Method");
@@ -200,7 +266,11 @@ public class PaymentFragment extends Fragment {
         builder.show();
     }
 
-
+    /**
+     * Adds a new payment method to the server and updates the UI.
+     *
+     * @param paymentMethodName The name of the payment method to add.
+     */
     private void addNewPaymentMethod(String paymentMethodName) {
         new Thread(() -> {
             try {
@@ -238,6 +308,12 @@ public class PaymentFragment extends Fragment {
         }).start();
     }
 
+    /**
+     * Deletes a specified payment method by making a network request.
+     * The method runs in a background thread to avoid blocking the main thread.
+     *
+     * @param method the payment method to be deleted
+     */
     private void deletePaymentMethod(PaymentMethod method) {
         new Thread(() -> {
             try {
@@ -260,12 +336,18 @@ public class PaymentFragment extends Fragment {
         }).start();
     }
 
+    /**
+     * Saves the current payment method settings by making network requests to update the default payment method.
+     * If the selected payment method is different from the original, the original isDefault flag is reset to 0,
+     * and the selected payment method isDefault flag is set to 1.
+     * The operation is performed in a background thread.
+     */
     private void savePaymentMethods() {
         new Thread(() -> {
             try {
                 OkHttpClient client = new OkHttpClient();
                 if (chushiId != selectedPaymentMethodId) {
-                    // 将 chushiId 对应的 isDefault 置为 0
+                    // Update the original default payment method to isDefault = 0
                     JSONObject updateDefaultJson = new JSONObject();
                     updateDefaultJson.put("id", chushiId);
                     updateDefaultJson.put("isDefault", 0);
@@ -278,10 +360,10 @@ public class PaymentFragment extends Fragment {
                             .url(url + "/payway")
                             .post(updateDefaultBody)
                             .build();
-                    client.newCall(updateDefaultRequest).execute(); // 执行更新请求
+                    client.newCall(updateDefaultRequest).execute(); // Execute the update request
                 }
 
-                // 更新 selectedPaymentMethodId 对应的 isDefault 置为 1
+                // Set the selected payment method's isDefault to 1
                 JSONObject setDefaultJson = new JSONObject();
                 setDefaultJson.put("email", username);
                 setDefaultJson.put("isDefault", 1);
@@ -295,7 +377,7 @@ public class PaymentFragment extends Fragment {
                         .url(url + "/payway")
                         .post(setDefaultBody)
                         .build();
-                Response response = client.newCall(setDefaultRequest).execute(); // 执行设置请求
+                Response response = client.newCall(setDefaultRequest).execute();
 
                 String responseBody = response.body().string();
                 JSONObject jsonObject = new JSONObject(responseBody);
@@ -315,12 +397,21 @@ public class PaymentFragment extends Fragment {
         }).start();
     }
 
-
+    /**
+     * Represents a payment method with an ID, name, and default status.
+     */
     private static class PaymentMethod {
         private int id;
         private String name;
         private int isDefault;
 
+        /**
+         * Constructs a PaymentMethod instance with the specified ID, name, and default status.
+         *
+         * @param id        the unique identifier for the payment method
+         * @param name      the name of the payment method
+         * @param isDefault the default status of the payment method (1 if default, 0 otherwise)
+         */
         public PaymentMethod(int id, String name, int isDefault) {
             this.id = id;
             this.name = name;

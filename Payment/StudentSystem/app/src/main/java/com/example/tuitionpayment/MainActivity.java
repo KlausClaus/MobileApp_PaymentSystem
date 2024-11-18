@@ -17,12 +17,21 @@ import android.view.Window;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * MainActivity is the main entry point of the application after login.
+ * It initializes the navigation bar, requests necessary permissions, and handles fragment navigation.
+ */
 public class MainActivity extends AppCompatActivity {
-    //定义需要的权限
-    private static String[] PERMISSIONS_STORAGE = {android.Manifest.permission.READ_EXTERNAL_STORAGE,//读取外部存储
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE};//写入外部存储
+    // Permissions required for external storage access
+    private static String[] PERMISSIONS_STORAGE = {android.Manifest.permission.READ_EXTERNAL_STORAGE,// Read external storage
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE};// Write external storage
     private static int REQUEST_PERMISSION_CODE = 3;
 
+    /**
+     * Called when the activity is starting. Sets up the navigation bar, action bar, and permissions.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,19 +40,20 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         getPermission(MainActivity.this);
-        // 获取页面上的底部导航栏控件
+        // Get the BottomNavigationView from the layout
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        // 配置navigation与底部菜单之间的联系
-        // 底部菜单的样式里面的item里面的ID与navigation布局里面指定的ID必须相同，否则会出现绑定失败的情况
+        // Configure navigation and bottom menu linking
+        // IDs in the bottom menu items and navigation layout must match
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_user)
                 .build();
-        // 建立fragment容器的控制器，这个容器就是页面的上的fragment容器
+        // Create a NavController for the fragment container
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        // 启动
+        // Setup action bar with the NavController
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        // Link bottom navigation with the NavController
         NavigationUI.setupWithNavController(navView, navController);
 
         Intent intent = getIntent();
@@ -59,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Requests the necessary permissions for the application.
+     *
+     * @param obj the activity from which permissions are requested
+     */
     public void getPermission(Activity obj){
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             for (int i = 0 ; i < PERMISSIONS_STORAGE.length ; i++){
@@ -71,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 隐藏导航栏
+     * Hides the navigation bar and status bar for an immersive experience.
      */
     public void hideNav() {
         Window window = getWindow();

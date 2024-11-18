@@ -27,6 +27,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Activity for displaying a list of unpaid tuition fees for the current user.
+ */
 public class UnpaidFeesActivity extends AppCompatActivity {
 
     private ItemAdapter itemAdapter;
@@ -34,6 +37,11 @@ public class UnpaidFeesActivity extends AppCompatActivity {
     private String currentUserID;
     private ListView itemListView;
 
+    /**
+     * Called when the activity is starting. Initializes the UI and loads unpaid fee items.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,32 +57,35 @@ public class UnpaidFeesActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Fetches the list of unpaid fee items from the server and updates the UI.
+     */
     private void loadItems() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    OkHttpClient client = new OkHttpClient(); //创建http客户端
-                    // 创建 JSON 格式的请求体
+                    OkHttpClient client = new OkHttpClient();
+
                     JSONObject json = new JSONObject();
                     json.put("studentEmail", currentUsername);
                     json.put("status", 0);
 
                     RequestBody body = RequestBody.create(
-                            json.toString(), // 将 JSON 对象转换为字符串
-                            MediaType.parse("application/json; charset=utf-8") // 指定请求体类型为 JSON
+                            json.toString(),
+                            MediaType.parse("application/json; charset=utf-8")
                     );
 
                     Request request = new Request.Builder()
                             .url(url+"/tuitionInvoice/listByEmailStatus")
                             .post(body)
-                            .build();//创造http请求
-                    Response response = client.newCall(request).execute();//执行发送指令
+                            .build();
+                    Response response = client.newCall(request).execute();
                     String a = response.body().string();
                     JSONObject jsonObject = new JSONObject(a);
                     System.out.println(jsonObject);
                     if (jsonObject.getString("code").equals("200")) {
-                        // 获取 data 数组
+
                         JSONArray dataArray = jsonObject.getJSONArray("data");
                         List<Item> items = convertJsonArrayToList(dataArray);
                         runOnUiThread(new Runnable() {
@@ -83,7 +94,8 @@ public class UnpaidFeesActivity extends AppCompatActivity {
                                 if (items != null && !items.isEmpty()) {
                                     itemAdapter = new ItemAdapter(UnpaidFeesActivity.this, items);
                                     itemListView.setAdapter(itemAdapter);
-                                    //设置点击事件
+
+                                    // Set click listener for list items
                                     itemListView.setOnItemClickListener((parent, view, position, id) -> {
                                         Item selectedItem = items.get(position);
                                         Intent intent = new Intent(UnpaidFeesActivity.this, DetailActivity.class);
@@ -105,15 +117,22 @@ public class UnpaidFeesActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Converts a JSON array of items to a list of {@link Item} objects.
+     *
+     * @param jsonArray the JSON array to be converted
+     * @return a list of {@link Item} objects
+     * @throws JSONException if a parsing error occurs
+     */
     private List<Item> convertJsonArrayToList(JSONArray jsonArray) throws JSONException {
         List<Item> itemList = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            Item item = new Item();  // 创建一个空的 Item 对象
+            Item item = new Item();
 
-            // 逐步设置每个属性
+            // Set attributes of the item
             item.setId(jsonObject.getInt("id"));
             item.setStudentName(jsonObject.getString("studentName"));
             item.setStudentEmail(jsonObject.getString("studentEmail"));
@@ -122,7 +141,7 @@ public class UnpaidFeesActivity extends AppCompatActivity {
             item.setTotalFee(jsonObject.getDouble("totalFee"));
             item.setTuitionFee(jsonObject.getDouble("tuitionFee"));
 
-            // 使用 optDouble 来处理可能为空的字段
+            // Handle optional fields using optDouble
             item.setAccommodationFee(jsonObject.optDouble("accommodationFee", 0.0));
             item.setBookFee(jsonObject.optDouble("bookFee", 0.0));
             item.setMaterialFee(jsonObject.optDouble("materialFee", 0.0));
@@ -133,7 +152,6 @@ public class UnpaidFeesActivity extends AppCompatActivity {
 //            item.setPaymentAmount(jsonObject.getDouble("paymentAmount"));
             item.setCreatedTime(jsonObject.getString("createdTime"));
 
-            // 使用 optString 来处理可能为空的字符串字段
             item.setPaymentTime(jsonObject.optString("paymentTime", null));
 
             item.setStatus(jsonObject.getInt("status"));

@@ -23,6 +23,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * Activity for displaying user notifications fetched from the server.
+ */
 public class NotifyActivity extends AppCompatActivity {
 
     private ListView notificationListView;
@@ -31,6 +34,12 @@ public class NotifyActivity extends AppCompatActivity {
     private String currentUsername;
     private String currentUserID;
 
+    /**
+     * Called when the activity is starting. Initializes the notification list view
+     * and fetches notifications for the current user.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,28 +53,33 @@ public class NotifyActivity extends AppCompatActivity {
         notificationAdapter = new NotificationAdapter(this, notificationList);
         notificationListView.setAdapter(notificationAdapter);
 
-        // 根据 uid 获取通知数据
-        String uid = "your_uid_here"; // 你需要根据实际情况获取 uid
+        String uid = "your_uid_here";
+        // Fetch notifications for the current user
         fetchNotifications(uid);
     }
 
+    /**
+     * Fetches the notifications for the given user ID by sending a request to the server.
+     *
+     * @param uid the user ID for which to fetch notifications
+     */
     private void fetchNotifications(String uid) {
         new Thread(() -> {
             try {
                 OkHttpClient client = new OkHttpClient();
-                // 创建 JSON 格式的请求体
+                // Create JSON request body
                 JSONObject json = new JSONObject();
                 json.put("uid", currentUserID);
 
                 RequestBody body = RequestBody.create(
-                        json.toString(), // 将 JSON 对象转换为字符串
-                        MediaType.parse("application/json; charset=utf-8") // 指定请求体类型为 JSON
+                        json.toString(), // Convert JSON object to string
+                        MediaType.parse("application/json; charset=utf-8") // Specify request body type as JSON
                 );
 
                 Request request = new Request.Builder()
-                        .url(url+"/notify/listByUid")    //需要本机IP地址
+                        .url(url+"/notify/listByUid") // Server endpoint for fetching notifications
                         .post(body)
-                        .build();//创造http请求
+                        .build();// Build the HTTP request
                 Response response = client.newCall(request).execute();
                 String a = response.body().string();
                 JSONObject jsonObject1 = new JSONObject(a);
@@ -81,6 +95,7 @@ public class NotifyActivity extends AppCompatActivity {
                     notificationList.add(notification);
                 }
 
+                // Update the UI on the main thread
                 runOnUiThread(() -> notificationAdapter.notifyDataSetChanged());
 
             } catch (Exception e) {

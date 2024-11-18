@@ -44,7 +44,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-
+/**
+ * Activity for displaying and editing user information, including password and avatar.
+ */
 public class UserInfoActivity extends AppCompatActivity {
     private String currentUsername;
     private EditText editTextNickname;
@@ -60,6 +62,12 @@ public class UserInfoActivity extends AppCompatActivity {
 
     Button button_upload_avatar;
     ImageView image_view_avatar;
+
+    /**
+     * Called when the activity is starting. Initializes the UI and sets up click listeners.
+     *
+     * @param savedInstanceState the previously saved state of the activity, if any
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +106,9 @@ public class UserInfoActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Saves the changes made to the user's information, including password and avatar.
+     */
     private void saveChanges() {
         String newPassword = editTextPassword.getText().toString().trim();
 
@@ -110,12 +121,12 @@ public class UserInfoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    OkHttpClient client = new OkHttpClient(); //创建http客户端
+                    OkHttpClient client = new OkHttpClient();
                     if (backurl!=null){
                         File file = new File(backurl);
-                        MultipartBody.Builder requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM);//通过表单上传文件
-                        RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"),file);//上传文件及其类型
-                        requestBody.addFormDataPart("file",file.getName(),fileBody);//参数：请求的key，文件名称，fileBody
+                        MultipartBody.Builder requestBody = new MultipartBody.Builder().setType(MultipartBody.FORM);
+                        RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"),file);
+                        requestBody.addFormDataPart("file",file.getName(),fileBody);
                         Request request = new Request.Builder()
                                 .url(url+"/files/file")
                                 .post(requestBody.build())
@@ -139,12 +150,12 @@ public class UserInfoActivity extends AppCompatActivity {
                                                 "    \"password\":" + "\"" + password + "\",\n" +
                                                 "    \"avatar\":" + "\"" + backurl + "\"\n" +
                                                 "}";
-                                        OkHttpClient client1 = new OkHttpClient(); //创建http客户端
+                                        OkHttpClient client1 = new OkHttpClient();
                                         Request request1 = new Request.Builder()
-                                                .url(url+"/user")    //需要本机IP地址
+                                                .url(url+"/user")
                                                 .post(RequestBody.create(MediaType.parse("application/json"), json))
-                                                .build();//创造http请求
-                                        Response response1 = client1.newCall(request1).execute();//执行发送指令
+                                                .build();
+                                        Response response1 = client1.newCall(request1).execute();
                                         String ab = response1.body().string();
                                         JSONObject jsonObject = new JSONObject(ab);
                                         System.out.println(jsonObject);
@@ -177,7 +188,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                        Response response = client.newCall(request).execute();//执行发送指令
+                        Response response = client.newCall(request).execute();
                         String a = response.body().string();
                         backurl = a;
 
@@ -192,12 +203,12 @@ public class UserInfoActivity extends AppCompatActivity {
                                     "    \"password\":" + "\"" + password + "\",\n" +
                                    "    \"avatar\":" + "\"" + avatar1 + "\"\n" +
                                     "}";
-                            OkHttpClient client1 = new OkHttpClient(); //创建http客户端
+                            OkHttpClient client1 = new OkHttpClient();
                             Request request1 = new Request.Builder()
-                                    .url(url+"/user")    //需要本机IP地址
+                                    .url(url+"/user")
                                     .post(RequestBody.create(MediaType.parse("application/json"), json))
-                                    .build();//创造http请求
-                            Response response1 = client1.newCall(request1).execute();//执行发送指令
+                                    .build();
+                            Response response1 = client1.newCall(request1).execute();
                             String ab = response1.body().string();
                             JSONObject jsonObject = new JSONObject(ab);
                             System.out.println(jsonObject);
@@ -234,7 +245,13 @@ public class UserInfoActivity extends AppCompatActivity {
         }).start();
     }
 
-    //从相册获得图片
+    /**
+     * Handles the result of an activity, such as selecting an image from the gallery.
+     *
+     * @param requestCode the request code
+     * @param resultCode  the result code
+     * @param data        the returned data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -251,7 +268,13 @@ public class UserInfoActivity extends AppCompatActivity {
         }
     }
 
-    //获取到图片的真实路径
+    /**
+     * Retrieves the real path of an image from its URI.
+     *
+     * @param uri       the image URI
+     * @param selection a selection filter, if any
+     * @return the real path of the image
+     */
     @SuppressLint("Range")
     private String getImagePath(Uri uri, String selection) {
         String path = null;
@@ -267,6 +290,11 @@ public class UserInfoActivity extends AppCompatActivity {
         return path;
     }
 
+    /**
+     * Fetches and displays an image from a given URL.
+     *
+     * @param imgUrl the URL of the image
+     */
     private void requestImg(final URL imgUrl)
     {
         new Thread(new Runnable() {
@@ -283,6 +311,12 @@ public class UserInfoActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    /**
+     * Displays a bitmap image in the avatar ImageView.
+     *
+     * @param bitmap the image to display
+     */
     private void showImg(final Bitmap bitmap){
         runOnUiThread(new Runnable() {
             @Override
