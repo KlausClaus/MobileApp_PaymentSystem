@@ -1,0 +1,32 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:id="@+id/paymentMethodsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- Confirm Transaction Button -->
+        <Button
+            android:id="@+id/confirmTransaction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Transaction"
+            android:textAllCaps="false"
+            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/white"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>

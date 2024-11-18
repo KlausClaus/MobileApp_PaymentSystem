@@ -1,0 +1,437 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.tuitionpayment"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:5:5-67
+11-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.CAMERA" />
+12-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:6:5-65
+12-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:6:22-62
+13
+14    <uses-feature android:name="android.hardware.camera" />
+14-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:8:5-60
+14-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:8:19-57
+15    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 这个权限用于进行网络定位 -->
+15-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:9:5-70
+15-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:9:19-67
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+16-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:10:5-81
+16-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:10:22-78
+17    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+17-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:11:5-79
+17-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:11:22-76
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+18-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:5-80
+18-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:22-77
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+19-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:13:5-81
+19-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:13:22-78
+20    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+20-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:14:5-16:47
+20-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:15:9-68
+21    <uses-permission android:name="android.permission.INTERNET" />
+21-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:5:5-67
+21-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:5:22-64
+22    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+22-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:18:5-79
+22-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:18:22-76
+23    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+23-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:5-80
+23-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:22-77
+24    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+24-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:20:5-72
+24-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:20:22-69
+25    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+25-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:13:5-81
+25-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:13:22-78
+26    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 访问网络，进行地图相关业务数据请求，包括地图数据，路线规划，POI检索等 -->
+26-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:5-80
+26-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:22-77
+27    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取网络状态，根据网络状态切换进行数据请求网络转换 -->
+27-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:5:5-67
+27-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:5:22-64
+28    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 读取外置存储。如果开发者使用了so动态加载功能并且把so文件放在了外置存储区域，则需要申请该权限，否则不需要 -->
+28-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:18:5-79
+28-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:18:22-76
+29    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 写外置存储。如果开发者使用了离线地图，并且数据写在外置存储区域，则需要申请该权限 -->
+29-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:5-80
+29-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:12:22-77
+30    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 这个权限用于进行网络定位 -->
+30-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:13:5-81
+30-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:13:22-78
+31    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+31-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:10:5-81
+31-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:10:22-78
+32    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+32-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:11:5-79
+32-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:11:22-76
+33    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+33-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:10:5-81
+33-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:10:22-78
+34    <uses-permission android:name="android.permission.ACCESS_GPS" /> <!-- 获取访问手机振动器权限，用于导航过程中的震动提示 -->
+34-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:30:5-69
+34-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:30:22-66
+35    <uses-permission android:name="android.permission.VIBRATE" />
+35-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:31:5-66
+35-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:31:22-63
+36
+37    <queries>
+37-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:9:5-20:15
+38        <intent> <!-- H5 支持手淘登录 -->
+38-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:10:9-14:18
+39            <action android:name="*" />
+39-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:11:13-40
+39-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:11:21-37
+40
+41            <data android:scheme="tbopen" />
+41-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:13:13-45
+41-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:13:19-42
+42        </intent>
+43
+44        <package android:name="com.eg.android.AlipayGphone" /> <!-- 支付宝 app -->
+44-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:16:9-63
+44-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:16:18-60
+45        <package android:name="com.eg.android.AlipayGphoneRC" /> <!-- 沙箱支付宝 app -->
+45-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:17:9-65
+45-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:17:18-62
+46        <package android:name="hk.alipay.wallet" /> <!-- 香港版支付宝 app -->
+46-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:18:9-52
+46-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:18:18-49
+47        <package android:name="hk.alipay.walletRC" /> <!-- 香港版支付宝 app -->
+47-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:19:9-54
+47-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:19:18-51
+48    </queries>
+49
+50    <supports-screens
+50-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:22:5-27:39
+51        android:anyDensity="true"
+51-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:23:9-34
+52        android:largeScreens="true"
+52-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:24:9-36
+53        android:normalScreens="true"
+53-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:25:9-37
+54        android:resizeable="true"
+54-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:26:9-34
+55        android:smallScreens="true" />
+55-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:27:9-36
+56
+57    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+57-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:31:5-76
+57-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:31:22-73
+58
+59    <application
+59-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:33:5-134:19
+60        android:allowBackup="true"
+60-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:34:9-35
+61        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+61-->[androidx.core:core:1.8.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\431cec7f702dff1b5a6c6c1a913f6c3d\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+62        android:dataExtractionRules="@xml/data_extraction_rules"
+62-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:35:9-65
+63        android:debuggable="true"
+64        android:extractNativeLibs="false"
+65        android:fullBackupContent="@xml/backup_rules"
+65-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:36:9-54
+66        android:icon="@mipmap/ic_launcher"
+66-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:37:9-43
+67        android:label="@string/app_name"
+67-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:38:9-41
+68        android:roundIcon="@mipmap/ic_launcher_round"
+68-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:39:9-54
+69        android:supportsRtl="true"
+69-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:40:9-35
+70        android:theme="@style/Theme.TuitionPayment"
+70-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:41:9-52
+71        android:usesCleartextTraffic="true" >
+71-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:42:9-44
+72        <activity
+72-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:44:9-50:20
+73            android:name="com.example.tuitionpayment.NotifyActivity"
+73-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:45:13-43
+74            android:exported="false" >
+74-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:46:13-37
+75            <meta-data
+75-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+76                android:name="android.app.lib_name"
+76-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+77                android:value="" />
+77-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+78        </activity>
+79        <activity
+79-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:51:9-57:20
+80            android:name="com.example.tuitionpayment.ProfileActivity"
+80-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:52:13-44
+81            android:exported="false" >
+81-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:53:13-37
+82            <meta-data
+82-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+83                android:name="android.app.lib_name"
+83-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+84                android:value="" />
+84-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+85        </activity>
+86        <activity
+86-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:58:9-64:20
+87            android:name="com.example.tuitionpayment.PayDetailActivity"
+87-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:59:13-46
+88            android:exported="false" >
+88-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:60:13-37
+89            <meta-data
+89-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+90                android:name="android.app.lib_name"
+90-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+91                android:value="" />
+91-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+92        </activity>
+93        <activity
+93-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:65:9-71:20
+94            android:name="com.example.tuitionpayment.UserInfoActivity"
+94-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:66:13-45
+95            android:exported="false" >
+95-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:67:13-37
+96            <meta-data
+96-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+97                android:name="android.app.lib_name"
+97-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+98                android:value="" />
+98-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+99        </activity>
+100        <activity
+100-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:72:9-78:20
+101            android:name="com.example.tuitionpayment.ManagePaymentActivity"
+101-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:73:13-50
+102            android:exported="false" >
+102-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:74:13-37
+103            <meta-data
+103-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+104                android:name="android.app.lib_name"
+104-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+105                android:value="" />
+105-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+106        </activity>
+107        <activity
+107-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:79:9-85:20
+108            android:name="com.example.tuitionpayment.PaidFeesActivity"
+108-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:80:13-45
+109            android:exported="false" >
+109-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:81:13-37
+110            <meta-data
+110-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+111                android:name="android.app.lib_name"
+111-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+112                android:value="" />
+112-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+113        </activity>
+114        <activity
+114-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:86:9-92:20
+115            android:name="com.example.tuitionpayment.UnpaidFeesActivity"
+115-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:87:13-47
+116            android:exported="false" >
+116-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:88:13-37
+117            <meta-data
+117-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+118                android:name="android.app.lib_name"
+118-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+119                android:value="" />
+119-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+120        </activity>
+121        <activity
+121-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:93:9-99:20
+122            android:name="com.example.tuitionpayment.DetailActivity"
+122-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:94:13-43
+123            android:exported="false" >
+123-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:95:13-37
+124            <meta-data
+124-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+125                android:name="android.app.lib_name"
+125-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+126                android:value="" />
+126-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+127        </activity>
+128        <activity
+128-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:100:9-106:20
+129            android:name="com.example.tuitionpayment.alipay.AlipayOfSandbox"
+129-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:101:13-51
+130            android:exported="false" >
+130-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:102:13-37
+131            <meta-data
+131-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+132                android:name="android.app.lib_name"
+132-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+133                android:value="" />
+133-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+134        </activity>
+135        <activity
+135-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:107:9-113:20
+136            android:name="com.example.tuitionpayment.RegisterActivity"
+136-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:108:13-45
+137            android:exported="false" >
+137-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:109:13-37
+138            <meta-data
+138-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+139                android:name="android.app.lib_name"
+139-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+140                android:value="" />
+140-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+141        </activity>
+142        <activity
+142-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:114:9-120:20
+143            android:name="com.example.tuitionpayment.MainActivity"
+143-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:115:13-41
+144            android:exported="false" >
+144-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:116:13-37
+145            <meta-data
+145-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+146                android:name="android.app.lib_name"
+146-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+147                android:value="" />
+147-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+148        </activity>
+149        <activity
+149-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:121:9-133:20
+150            android:name="com.example.tuitionpayment.LoginActivity"
+150-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:122:13-42
+151            android:exported="true" >
+151-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:123:13-36
+152            <intent-filter>
+152-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:124:13-128:29
+153                <action android:name="android.intent.action.MAIN" />
+153-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:125:17-69
+153-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:125:25-66
+154
+155                <category android:name="android.intent.category.LAUNCHER" />
+155-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:127:17-77
+155-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:127:27-74
+156            </intent-filter>
+157
+158            <meta-data
+158-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:47:13-49:36
+159                android:name="android.app.lib_name"
+159-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:48:17-52
+160                android:value="" />
+160-->D:\GItHubProjects\MobileApp_PaymentSystem\Payment\StudentSystem\app\src\main\AndroidManifest.xml:49:17-33
+161        </activity>
+162
+163        <uses-library
+163-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:34:9-36:40
+164            android:name="org.apache.http.legacy"
+164-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:35:13-50
+165            android:required="false" />
+165-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:36:13-37
+166
+167        <activity
+167-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:38:9-43:20
+168            android:name="com.alipay.sdk.app.H5PayActivity"
+168-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:39:13-60
+169            android:configChanges="orientation|keyboardHidden|navigation|screenSize|locale|keyboard|screenLayout|density|fontScale|layoutDirection|smallestScreenSize"
+169-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:40:13-167
+170            android:exported="false"
+170-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:41:13-37
+171            android:theme="@android:style/Theme.NoTitleBar" >
+171-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:42:13-60
+172        </activity>
+173        <activity
+173-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:44:9-49:20
+174            android:name="com.alipay.sdk.app.H5AuthActivity"
+174-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:45:13-61
+175            android:configChanges="orientation|keyboardHidden|navigation|screenSize|locale|keyboard|screenLayout|density|fontScale|layoutDirection|smallestScreenSize"
+175-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:46:13-167
+176            android:exported="false"
+176-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:47:13-37
+177            android:theme="@android:style/Theme.NoTitleBar" >
+177-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:48:13-60
+178        </activity>
+179        <activity
+179-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:50:9-56:20
+180            android:name="com.alipay.sdk.app.PayResultActivity"
+180-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:51:13-64
+181            android:configChanges="orientation|keyboardHidden|navigation|screenSize|locale|keyboard|screenLayout|density|fontScale|layoutDirection|smallestScreenSize"
+181-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:52:13-167
+182            android:exported="true"
+182-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:53:13-36
+183            android:launchMode="singleInstance"
+183-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:54:13-48
+184            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+184-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:55:13-72
+185        </activity>
+186        <activity
+186-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:57:9-63:20
+187            android:name="com.alipay.sdk.app.AlipayResultActivity"
+187-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:58:13-67
+188            android:configChanges="orientation|keyboardHidden|navigation|screenSize|locale|keyboard|screenLayout|density|fontScale|layoutDirection|smallestScreenSize"
+188-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:59:13-167
+189            android:exported="true"
+189-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:60:13-36
+190            android:launchMode="singleTask"
+190-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:61:13-44
+191            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+191-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:62:13-72
+192        </activity>
+193        <activity
+193-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:64:9-70:20
+194            android:name="com.alipay.sdk.app.H5OpenAuthActivity"
+194-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:65:13-65
+195            android:configChanges="orientation|keyboardHidden|navigation|screenSize|locale|keyboard|screenLayout|density|fontScale|layoutDirection|smallestScreenSize"
+195-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:66:13-167
+196            android:exported="false"
+196-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:67:13-37
+197            android:screenOrientation="behind"
+197-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:68:13-47
+198            android:windowSoftInputMode="adjustResize|stateHidden" >
+198-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:69:13-67
+199        </activity>
+200        <activity
+200-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:71:9-76:20
+201            android:name="com.alipay.sdk.app.APayEntranceActivity"
+201-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:72:13-67
+202            android:configChanges="orientation|keyboardHidden|navigation|screenSize|locale|keyboard|screenLayout|density|fontScale|layoutDirection|smallestScreenSize"
+202-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:73:13-167
+203            android:exported="false"
+203-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:74:13-37
+204            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+204-->[com.alipay.sdk:alipaysdk-android:15.8.17] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3adeecc08bdba52f99508cffd03ed69d\transformed\alipaysdk-android-15.8.17\AndroidManifest.xml:75:13-72
+205        </activity>
+206
+207        <provider
+207-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+208            android:name="androidx.startup.InitializationProvider"
+208-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+209            android:authorities="com.example.tuitionpayment.androidx-startup"
+209-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+210            android:exported="false" >
+210-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+211            <meta-data
+211-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+212                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+212-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+213                android:value="androidx.startup" />
+213-->[androidx.emoji2:emoji2:1.2.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\dc9296e5ce72ffd2d32dd02846f9fe39\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+214            <meta-data
+214-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\klaus\.gradle\caches\8.10.2\transforms\6797fb51619fb96ff975f2dc196487a9\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+215                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+215-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\klaus\.gradle\caches\8.10.2\transforms\6797fb51619fb96ff975f2dc196487a9\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+216                android:value="androidx.startup" />
+216-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\klaus\.gradle\caches\8.10.2\transforms\6797fb51619fb96ff975f2dc196487a9\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+217        </provider>
+218
+219        <uses-library
+219-->[androidx.window:window:1.0.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3b5573277773090d72525a06bddd98e2\transformed\window-1.0.0\AndroidManifest.xml:25:9-27:40
+220            android:name="androidx.window.extensions"
+220-->[androidx.window:window:1.0.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3b5573277773090d72525a06bddd98e2\transformed\window-1.0.0\AndroidManifest.xml:26:13-54
+221            android:required="false" />
+221-->[androidx.window:window:1.0.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3b5573277773090d72525a06bddd98e2\transformed\window-1.0.0\AndroidManifest.xml:27:13-37
+222        <uses-library
+222-->[androidx.window:window:1.0.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3b5573277773090d72525a06bddd98e2\transformed\window-1.0.0\AndroidManifest.xml:28:9-30:40
+223            android:name="androidx.window.sidecar"
+223-->[androidx.window:window:1.0.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3b5573277773090d72525a06bddd98e2\transformed\window-1.0.0\AndroidManifest.xml:29:13-51
+224            android:required="false" />
+224-->[androidx.window:window:1.0.0] C:\Users\klaus\.gradle\caches\8.10.2\transforms\3b5573277773090d72525a06bddd98e2\transformed\window-1.0.0\AndroidManifest.xml:30:13-37
+225    </application>
+226
+227</manifest>

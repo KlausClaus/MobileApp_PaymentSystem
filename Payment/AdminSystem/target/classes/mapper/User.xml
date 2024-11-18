@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.onlineTeaching.mapper.UserMapper">
+
+    <update id="update">
+        update userinfo
+        <if test="username != null ">
+            set username=#{username},password=#{password},uname=#{uname},usex=#{usex},uid_number=#{uid_number},ubirthday=#{ubirthday},unamed=#{unamed},unationality=#{unationality},political_status=#{political_status},religious_belief=#{religious_belief},place_of_permanent_residence=#{place_of_permanent_residence},native_place=#{native_place},height=#{height},weight=#{weight},left_eye_naked_vision=#{left_eye_naked_vision},right_eye_naked_vision=#{right_eye_naked_vision},role=#{role}
+            where uid = #{uid}
+        </if>
+    </update>
+</mapper>

@@ -1,0 +1,278 @@
+[
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_item_payment_method.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\item_payment_method.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_pay_detail.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_pay_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_register_background.PNG.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\register_background.PNG"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_register_login_buttonbackground.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\register_login_buttonbackground.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_paid_fees.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_paid_fees.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_fragment_user.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\fragment_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_action_bar_bg.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\action_bar_bg.jpg"
+    },
+    {
+        "merged": "com.example.tuitionpayment.app-debug-37:/layout_fragment_user.xml.flat",
+        "source": "com.example.tuitionpayment.app-main-39:/layout/fragment_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_alipay_logo.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\alipay_logo.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\navigation_mobile_navigation.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\navigation\\mobile_navigation.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_icon_bill.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\icon_bill.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_message_bubble_sent.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\message_bubble_sent.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_applepay_logo.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\applepay_logo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_baseline_arrow_forward_24.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\baseline_arrow_forward_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_right_bubble.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\right_bubble.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_yinlian_logo.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\yinlian_logo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_fragment_payment.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\fragment_payment.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_my.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\my.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_unpaid_fees.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_unpaid_fees.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_icon_payment.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\icon_payment.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_user_info.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_user_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_alipay_of_sandbox.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_alipay_of_sandbox.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_notify.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_notify.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_wechat_logo.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\wechat_logo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_ic_content_copy.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\ic_content_copy.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_card_background.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\card_background.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_item_layout.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_logo.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\logo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_no_notify.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\no_notify.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_visa_logo.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\visa_logo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_shape_action_bar_bg.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\shape_action_bar_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\menu_button_menu_nav.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\menu\\button_menu_nav.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_left_bubble.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\left_bubble.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_notify.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\notify.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_text_view_background.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\text_view_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_shouye.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\shouye.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_infoback.jpg.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\infoback.jpg"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_background_frame.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\background_frame.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_message_bubble_received.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\message_bubble_received.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_xiaoxi.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\xiaoxi.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_fragment_bill.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\fragment_bill.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_next.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\next.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_ic_arrow_forward.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\ic_arrow_forward.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_manage_payment.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_manage_payment.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_detail.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_zaixian.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\zaixian.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_img.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\img.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_wenjian.png.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\wenjian.png"
+    },
+    {
+        "merged": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-debug-37:\\drawable_ic_exit.xml.flat",
+        "source": "C:\\Users\\klaus\\.gradle\\daemon\\8.10.2\\com.example.tuitionpayment.app-main-39:\\drawable\\ic_exit.xml"
+    }
+]
